@@ -8,7 +8,6 @@ body {
   flex: 1;
   padding: 0 var(--space-lg);
   margin: 0;
-  text-align: center;
   justify-content: center;
   background-color: #e6e6e6;
   z-index: 1;
