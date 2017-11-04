@@ -3,22 +3,88 @@ body {
   min-height: 100vh;
   flex-direction: row;
   flex: 1;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 #main {
   flex: 1;
   padding: 0 var(--space-lg);
   margin: 0;
   justify-content: center;
-  background-color: #e6e6e6;
+  background-color: #F4F4F4;
   z-index: 1;
+  text-align:center;
 }
 #left, #right {
   flex: 0 0 12em;
   padding: 1em;
   border-radius: 3px;
-  background: rgba(147, 128, 108, 0.4);
+  background-color: #F4F4F4;
   z-index: 0;
 }
 #left {
   order: -1;
+}
+
+
+
+h1 {
+	text-align: center;
+}
+
+#logCallButton{
+	background-color: #47566d; 
+    border: none;
+    color: white;
+    padding: 15px 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+
+
+
+#callLogTable{
+	text-align: center;
+	border-collapse: collapse;
+	width: 80%;
+	margin:auto;
+}
+
+#callLogTable, th {
+    height: 30%;
+}
+
+#callLogTable, th, td {
+    border: 1px solid black;
+}
+
+#callLogTable tr:hover {
+    background-color: #b5b5b5;
+}
+
+#callLogTable tr:first-child {
+    background-color: #47566d;
+    color: white;
+}
+
+#callLogTable tr:first-child:hover {
+    background-color: #47566d;
+}
+
+.selected{
+	background-color:blue;
+}
+
+
+#rowButtonsBottom{
+	margin: 0 auto; 
+	text-align: left;
+}
+
+#editProblemButton{
+	flex: 0;
+	margin-top: 3%;
 }
