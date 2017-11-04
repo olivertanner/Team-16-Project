@@ -2,9 +2,6 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Call Log</title>
-    <style type="text/css">
-	   @import url("stylesheet.css");
-    </style>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){ //on page open
@@ -24,17 +21,10 @@
       };
       $("#callLogTable > tbody:last-child").append(rows);
     })
-    $("#table tr").click(function(){
-   $(this).addClass('selected').siblings().removeClass('selected');
-   var value=$(this).find('td:first').html();
-   alert(value);
-});
     </script>
   </head>
   <body>
-
-    <div id="main">
-      <header><h1>Call Log</h1></header>
+    <header><h1>Call Log</h1></header>
     <div>
       <input type='button' id='logCallButton' value='Log Call' onclick='' />
       <table id='callLogTable' border=1;>
@@ -56,8 +46,5 @@
       <input type='button' id='checkSolutionButton' value='Check Solution' onclick='' />
       <input type='button' id='closeProblemButton' value='Close Problem' onclick='' />
     </div>
-  </div>
-  <div id="left"></div>
-  <div id="right"></div>
   </body>
 </html>

@@ -1,0 +1,25 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+  flex: 1;
+}
+#main {
+  flex: 1;
+  padding: 0 var(--space-lg);
+  margin: 0;
+  text-align: center;
+  justify-content: center;
+  background-color: #e6e6e6;
+  z-index: 1;
+}
+#left, #right {
+  flex: 0 0 12em;
+  padding: 1em;
+  border-radius: 3px;
+  background: rgba(147, 128, 108, 0.4);
+  z-index: 0;
+}
+#left {
+  order: -1;
+}
