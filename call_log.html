@@ -24,10 +24,9 @@
       };
       $("#callLogTable > tbody:last-child").append(rows);
     })
-    $("#table tr").click(function(){
+    $("#callLogTable tr").click(function(){
    $(this).addClass('selected').siblings().removeClass('selected');
    var value=$(this).find('td:first').html();
-   alert(value);
 });
     </script>
   </head>
@@ -36,7 +35,7 @@
     <div id="main">
       <header><h1>Call Log</h1></header>
     <div>
-      <input type='button' id='logCallButton' value='Log Call' onclick='' />
+      <input type='button' id='logCallButton' value='Log Call' onclick="location.href='log_new_call.html';" />
       <table id='callLogTable' border=1;>
         <tbody>
           <tr>

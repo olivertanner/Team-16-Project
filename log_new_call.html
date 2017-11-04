@@ -1,50 +1,52 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Call Log</title>
+    <title>Log new call</title>
+    <style type="text/css">
+	   @import url("stylesheet.css");
+    </style>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){ //on page open
-      var calls = [
-        ["Alex","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["Ben","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["Charles","01-01-2017","13:00:00","Networking","Tom","No"]
-      ];
-      var rows = "";
-      for (var i = 0; i < calls.length; i++) {
-        var row = "<tr>";
-        for (var j = 0; j < calls[i].length; j++) {
-          row += "<td>"+calls[i][j]+"</td>";
-        }
-        row += "</tr>";
-        rows += row;
-      };
-      $("#callLogTable > tbody:last-child").append(rows);
+      var date = new Date();
+      var currentDate = date.getDate()+"/"
+      +(date.getMonth()+1)+"/"
+      +date.getFullYear();
+      var currentTime = date.getHours()+":"
+      +date.getMinutes()+":"
+      +date.getSeconds();
+      $("#dateInput").val(currentDate);
+      $("#timeInput").val(currentTime);
     })
     </script>
   </head>
   <body>
-    <header><h1>Call Log</h1></header>
-    <div>
-      <input type='button' id='logCallButton' value='Log Call' onclick='' />
-      <table id='callLogTable' border=1;>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Problem Type</th>
-            <th>Specialist Assigned</th>
-            <th>Closed</th>
-          </tr>
-        </tbody>
-      </table>
+    <div id="main">
+      <header><h1>Log new call</h1></header>
+      <div>
+        <p>
+          <label>Operator Name</label><br/>
+          <input type="text" />
+        </p>
+        <p>
+          <label>Caller Name</label><br/>
+          <input type="text" />
+        </p>
+        <p>
+          <label>Reason for call</label><br/>
+          <input type="text" />
+        </p>
+        <p>
+          <label>Date</label><br/>
+          <input type="text" id="dateInput" />
+        </p>
+        <p>
+          <label>Time</label><br/>
+          <input type="text" id="timeInput" />
+        </p>
+      </div>
     </div>
-    <div style="inline-block">
-      <input type='button' id='editProblemButton' value='Edit Problem' onclick='' />
-      <input type='button' id='checkDetailsButton' value='Check Details' onclick='' />
-      <input type='button' id='checkSolutionButton' value='Check Solution' onclick='' />
-      <input type='button' id='closeProblemButton' value='Close Problem' onclick='' />
-    </div>
+    <div id="left"></div>
+    <div id="right"></div>
   </body>
 </html>
