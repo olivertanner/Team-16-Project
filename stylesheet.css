@@ -46,6 +46,73 @@ h1 {
 
 
 
+#editProblemButton{
+	background-color: #82308e; 
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+#editProblemButton:hover{
+	background-color: #5f2168;
+}
+
+#checkDetailsButton{
+	background-color: #5b5b5b; 
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+#checkDetailsButton:hover{
+	background-color: #444444; 
+}
+
+#checkSolutionButton{
+	background-color: #8baa00; 
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+#checkSolutionButton:hover{
+	background-color: #6c8400; 
+}
+
+#closeProblemButton{
+	background-color: #c12a2a; 
+    border: none;
+    color: white;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+#closeProblemButton:hover{
+	background-color: #9b2020;
+}
+
+
+
+
 #callLogTable{
 	text-align: center;
 	border-collapse: collapse;
@@ -77,6 +144,8 @@ h1 {
 .selected{
 	background-color:blue;
 }
+
+
 
 
 #rowButtonsBottom{
