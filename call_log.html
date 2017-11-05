@@ -7,11 +7,15 @@
     </style>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
+
+
     $(document).ready(function(){ //on page open
+
+
       var calls = [
-        ["Alex","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["Ben","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["Charles","01-01-2017","13:00:00","Networking","Tom","No"]
+        ["1","Alex","01-01-2017","13:00:00","Networking","Tom","No"],
+        ["2","Ben","01-01-2017","13:00:00","Networking","Tom","No"],
+        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","No"]
       ];
       var rows = "";
       for (var i = 0; i < calls.length; i++) {
@@ -23,22 +27,28 @@
         rows += row;
       };
       $("#callLogTable > tbody:last-child").append(rows);
+
+      $("#callLogTable tbody tr").click(function(){
+        if($(this).hasClass("selected")){
+          $(this).removeClass("selected");
+        } else {
+          $(this).addClass("selected").siblings().removeClass("selected");
+      }
+        var value=$(this).find("td:first").html();
+      });
     })
-    $("#callLogTable tr").click(function(){
-   $(this).addClass('selected').siblings().removeClass('selected');
-   var value=$(this).find('td:first').html();
-});
+
     </script>
   </head>
   <body>
-
     <div id="main">
       <header><h1>Call Log</h1></header>
     <div>
-      <input type='button' id='logCallButton' value='Log Call' onclick="location.href='log_new_call.html';" />
-      <table id='callLogTable' border=1;>
+      <input type="button" id="logCallButton" value="Log Call" onclick="location.href='log_new_call.html';" />
+      <table id="callLogTable" border=1;>
         <tbody>
           <tr>
+            <th>Problem ID</th>
             <th>Name</th>
             <th>Date</th>
             <th>Time</th>
@@ -50,10 +60,10 @@
       </table>
     </div>
     <div style="inline-block">
-      <input type='button' id='editProblemButton' value='Edit Problem' onclick='' />
-      <input type='button' id='checkDetailsButton' value='Check Details' onclick='' />
-      <input type='button' id='checkSolutionButton' value='Check Solution' onclick='' />
-      <input type='button' id='closeProblemButton' value='Close Problem' onclick='' />
+      <input type="button" id="editProblemButton" value="Edit Problem" onclick="" />
+      <input type="button" id="checkDetailsButton" value="Check Details" onclick="" />
+      <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
+      <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
     </div>
   </div>
   <div id="left"></div>
