@@ -9,12 +9,12 @@
     <script type="text/javascript">
     $(document).ready(function(){ //on page open
       var date = new Date();
-      var currentDate = date.getDate()+"/"
-      +(date.getMonth()+1)+"/"
+      var currentDate = ('0' + date.getDate()).slice(-2)+"/"
+      +("0" + (date.getMonth()+1)).slice(-2)+"/"
       +date.getFullYear();
-      var currentTime = date.getHours()+":"
-      +date.getMinutes()+":"
-      +date.getSeconds();
+      var currentTime = ("0" + date.getHours()).slice(-2)+":"
+      +("0" + date.getMinutes()).slice(-2)+":"
+      +("0" + date.getSeconds()).slice(-2);
       $("#dateInput").val(currentDate);
       $("#timeInput").val(currentTime);
     })
@@ -23,28 +23,61 @@
   <body>
     <div id="main">
       <header><h1>Log new call</h1></header>
-      <div>
-        <p>
+      <div style="display:inline-block;">
+      <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
+        <h2>Helpdesk Operator</h2>
+        <div style="display: inline-block; text-align:left;">
           <label>Operator Name</label><br/>
           <input type="text" />
-        </p>
-        <p>
-          <label>Caller Name</label><br/>
-          <input type="text" />
-        </p>
-        <p>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
           <label>Reason for call</label><br/>
           <input type="text" />
-        </p>
-        <p>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
           <label>Date</label><br/>
           <input type="text" id="dateInput" />
-        </p>
-        <p>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
           <label>Time</label><br/>
           <input type="text" id="timeInput" />
-        </p>
+        </div><br/>
+      </div><br/>
+      <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
+        <h2>Caller</h2>
+        <div style="display: inline-block; text-align:left;">
+          <label>Caller Name</label><br/>
+          <input type="text" />
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+        <input type="button" id="lookupCallerBtn" value="Lookup Caller" onclick="" />
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Reason for call</label><br/>
+          <input type="text" />
+        </div><br/>
       </div>
+      <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
+        <h2>Problems</h2>
+        <div style="display: inline-block; text-align:left;">
+          <div style="display: inline-block; text-align:left;">
+          <input type="button" id="addProblemBtn" value="Add Problem" onclick="" />
+          <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="" />
+          </div><br/>
+          <table id="problemTable">
+            <tr>
+              <th>Problem ID</th>
+              <th>Problem Type</th>
+            </tr>
+          </table>
+        </div><br/>
+      </div>
+      <div style="display: inline-block; text-align:left;">
+      <input type="button" id="cancelCallBtn" value="Cancel" onclick="" />
+      <input type="button" id="logCallBtn" value="Log Call" onclick="" />
+      </div><br/>
+    </div>
+
     </div>
     <div id="left"></div>
     <div id="right"></div>
