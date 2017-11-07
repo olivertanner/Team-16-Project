@@ -14,6 +14,9 @@ body {
   z-index: 1;
   text-align:center;
 }
+#main2{
+
+}
 #left, #right {
   flex: 0 0 12em;
   padding: 1em;
@@ -162,8 +165,53 @@ h1 {
 	margin: 0 auto; 
 	text-align: left;
 }
-
 #editProblemButton{
 	flex: 0;
 	margin-top: 3%;
 }
+
+#contentleft {
+  float:left;
+}
+
+#contentright {
+  float:left;
+}
+
+#operator{
+	border-bottom:1px solid black;
+	display:inline-block;
+	width:100%;
+}
+
+h2{
+	text-align:left;
+	font-size:16px;
+	text-decoration: underline;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 120px;
+    text-align: right;
+}
+input {
+  display: inline-block;
+  float: left;
+}
+textarea{
+  display: inline-block;
+  float: left;
+}
+
+
+#lookupCallerBtn{
+	margin-left:10px;
+}
+
+
+
+
+

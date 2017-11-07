@@ -21,42 +21,40 @@
     </script>
   </head>
   <body>
-    <div id="main">
-      <header><h1>Log new call</h1></header>
+    <div id="main2">
+    <div id="contentLeft" style="float:left;">
+      <div><header><h1>Log New Call</h1></header><div/>
       <div style="display:inline-block;">
-      <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
-        <h2>Helpdesk Operator</h2>
-        <div style="display: inline-block; text-align:left;">
-          <label>Operator Name</label><br/>
+      <div id="operator">
+        <h2>HELPDESK OPERATOR</h2>
+        <div>
+          <label>Operator Name:</label>
           <input type="text" />
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
-          <label>Date</label><br/>
+          <label>Date:</label>
           <input type="text" id="dateInput" />
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
-          <label>Time</label><br/>
+          <label>Time:</label>
           <input type="text" id="timeInput" />
-        </div><br/>
+        </div>
       </div><br/>
 
       <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
-        <h2>Caller</h2>
-        <div style="display: inline-block; text-align:left;">
-          <label>Caller Name</label><br/>
-          <input type="text" size="30"/>
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
+        <h2>CALLER</h2>
+        <div>
+          <label>Caller Name:</label>
+          <input type="text" size="20"/>
         <input type="button" id="lookupCallerBtn" value="Lookup Caller" onclick="" />
         </div><br/>
         <div style="display: inline-block; text-align:left;">
-          <label>Reason for call</label><br/>
-          <textarea size="40" rows="5"></textarea>
-        </div><br/>
+          <label>Reason for call:</label>
+          <textarea cols="33" rows="5" charswidth="23" style= resize:none></textarea>
+        </div><br/><br/>
       </div></br>
+    </div></br>
+    </div>
 
+	<div id="contentright" style="float:right;">
       <div style="border-bottom:1px solid black;display:inline-block;width:100%;">
-        <h2>Problems</h2>
+        <h2>PROBLEMS</h2>
         <div style="display: inline-block; text-align:left;">
           <div style="display: inline-block; text-align:left;">
           <input type="button" id="addProblemBtn" value="Add Problem" onclick="" />
@@ -70,11 +68,12 @@
           </table>
         </div><br/>
       </div>
+    </div>
+
       <div style="display: inline-block; text-align:left;">
       <input type="button" id="cancelCallBtn" value="Cancel" onclick="" />
       <input type="button" id="logCallBtn" value="Log Call" onclick="" />
       </div><br/>
-    </div>
 
     </div>
     <div id="left"></div>
