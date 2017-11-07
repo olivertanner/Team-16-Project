@@ -13,9 +13,9 @@
 
 
       var calls = [
-        ["1","Alex","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["2","Ben","01-01-2017","13:00:00","Networking","Tom","No"],
-        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","No"]
+        ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["2","Ben","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Assigned"]
       ];
       var rows = "";
       for (var i = 0; i < calls.length; i++) {
@@ -47,30 +47,74 @@
       <img  src="images/banner.png" width="300" height="100" id="banner"/>
       <img  src="images/logo.png" width="110" height="90" id="logoRight"/>
       </header>
-    <div>
-      <input type="button" id="logCallButton" value="Log Call" onclick="location.href='log_new_call.html';" />
+      <div>
+      <input type="button" id="logCallButton" value="Log Call" onclick="location.href='log_new_call.html';" /><br/>
       <table id="callLogTable" border=1;>
         <tbody>
           <tr>
             <th>Problem ID</th>
-            <th>Name</th>
+            <th>Caller</th>
             <th>Date</th>
             <th>Time</th>
             <th>Problem Type</th>
             <th>Specialist Assigned</th>
-            <th>Closed</th>
+            <th>Status</th>
           </tr>
         </tbody>
       </table>
+      <div>
+        <input type="button" id="editProblemButton" value="Edit Problem" onclick="" />
+        <input type="button" id="checkDetailsButton" value="Check Details" onclick="" />
+        <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
+      </div>
     </div>
-    <div style="inline-block">
-      <input type="button" id="editProblemButton" value="Edit Problem" onclick="" />
-      <input type="button" id="checkDetailsButton" value="Check Details" onclick="" />
-      <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
-      <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
+
+    <div style="margin:auto 0;width:20%;float:left;display:inline-block;">
+
     </div>
   </div>
   <div id="left"></div>
-  <div id="right"></div>
+  <div id="right" style="display:flex;align-items:center;padding:10px;">
+    <div>
+    <h2>Problem Details</h2>
+    <div style="display: inline-block; text-align:left;">
+      <label>Helpdesk Operator</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Caller</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Status</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Date</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Problem Type</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Description</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Hardware</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Software</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Specialist Assigned</label><br/>
+      <input type="text" readonly/>
+    </div><br/>
+  </div>
+</div>
   </body>
 </html>

@@ -1,6 +1,13 @@
+*{
+  box-sizing: border-box;
+}
+html{
+  min-height: 100%;
+  background-color: #f4f4f4;
+}
 body {
+  min-height: 95vh;
   display: flex;
-  min-height: 100vh;
   flex-direction: row;
   flex: 1;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -15,8 +22,8 @@ body {
   text-align:center;
 }
 #left, #right {
-  flex: 0 0 12em;
-  padding: 1em;
+  flex: 0 0 14em;
+  padding: 0em;
   border-radius: 3px;
   background-color: #F4F4F4;
   z-index: 0;
@@ -36,12 +43,12 @@ body {
 h1 {
 	clear:both;
 	text-align: center;
-	
+
 }
 
 
 #logCallButton{
-	background-color: #47566d; 
+	background-color: #47566d;
     border: none;
     color: white;
     padding: 15px 40px;
@@ -53,13 +60,13 @@ h1 {
     border-radius: 2px;
 }
 #logCallButton:hover{
-	background-color: #2c3544; 
+	background-color: #2c3544;
 }
 
 
 
 #editProblemButton{
-	background-color: #82308e; 
+	background-color: #82308e;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -75,7 +82,7 @@ h1 {
 }
 
 #checkDetailsButton{
-	background-color: #5b5b5b; 
+	background-color: #5b5b5b;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -87,11 +94,11 @@ h1 {
     border-radius: 2px;
 }
 #checkDetailsButton:hover{
-	background-color: #444444; 
+	background-color: #444444;
 }
 
 #checkSolutionButton{
-	background-color: #8baa00; 
+	background-color: #8baa00;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -103,11 +110,11 @@ h1 {
     border-radius: 2px;
 }
 #checkSolutionButton:hover{
-	background-color: #6c8400; 
+	background-color: #6c8400;
 }
 
 #closeProblemButton{
-	background-color: #c12a2a; 
+	background-color: #c12a2a;
     border: none;
     color: white;
     padding: 8px 20px;
@@ -127,8 +134,10 @@ h1 {
 #callLogTable{
 	text-align: center;
 	border-collapse: collapse;
-	width: 80%;
+	width: 90%;
 	margin:auto;
+  overflow: scroll;
+  max-height: 80%;
 }
 
 #callLogTable, th {
@@ -159,7 +168,7 @@ h1 {
 
 
 #rowButtonsBottom{
-	margin: 0 auto; 
+	margin: 0 auto;
 	text-align: left;
 }
 
