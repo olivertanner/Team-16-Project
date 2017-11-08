@@ -25,7 +25,6 @@ body {
 
 }
 #left, #right {
-  flex: 0 0 14em;
   padding: 0em;
   border-radius: 3px;
   background-color: #F4F4F4;
@@ -33,6 +32,10 @@ body {
 }
 #left {
   order: -1;
+  flex: 0 0 10em;
+}
+#right {
+  flex: 0 0 20em;
 }
 
 #logoLeft{
@@ -111,6 +114,7 @@ h1 {
     font-size: 16px;
     margin-bottom:3%;
     border-radius: 2px;
+    margin-top: 3%;
 }
 #checkSolutionButton:hover{
 	background-color: #6c8400;
@@ -127,6 +131,7 @@ h1 {
     font-size: 16px;
     margin-bottom:3%;
     border-radius: 2px;
+    margin-top: 3%;
 }
 #closeProblemButton:hover{
 	background-color: #9b2020;
@@ -137,9 +142,9 @@ h1 {
 #callLogTable{
 	text-align: center;
 	border-collapse: collapse;
-	width: 90%;
+	width: 100%;
 	margin:auto;
-  overflow: scroll;
+  overflow-y: scroll;
   max-height: 80%;
 }
 
@@ -200,19 +205,15 @@ h2{
 }
 
 label{
-    display: inline-block;
-    float: left;
     clear: left;
     width: 120px;
     text-align: right;
 }
-input {
-  display: inline-block;
-  float: left;
-}
 textarea{
   display: inline-block;
   float: left;
+  resize:none;
+  overflow-y:scroll;
 }
 
 
