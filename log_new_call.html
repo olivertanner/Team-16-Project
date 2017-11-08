@@ -18,15 +18,25 @@
       $("#dateInput").val(currentDate);
       $("#timeInput").val(currentTime);
     })
+
+    function openAddProblemDialog(){
+      $("#addProblemModal").attr("style","display:inline-block");
+    }
+
+    function closeAddProblemDialog(){
+        $("#addProblemModal").removeAttr("style");
+        $("#addProblemModal").attr("style","display:none");
+      }
+
     </script>
   </head>
   <body>
     <div id="main">
-    
+
 	<header><h3>Log New Call</h3></header>
-    
+
     <div id="content">
-    
+
     	<div id="contentLeft">
       		<div id="operator">
         <h2>HELPDESK OPERATOR</h2>
@@ -37,7 +47,7 @@
           <label class="operatorLabels">Time:</label>
           <input type="text" id="timeInput" />
       </div><br/></br>
-      
+
       		<div id="caller">
         <header><h2>CALLER</h2></header>
         <label>Caller Name:</label></br>
@@ -45,14 +55,14 @@
         <input style="" type="button" id="lookupCallerBtn" value="Lookup" onclick="" /></br>
         <label>Reason for call:</label>
         <textarea cols="33" rows="5" charswidth="23" style= resize:none></textarea></br></br>
-    </div>  
+    </div>
    		 </div>
-	
+
 		<div id="contentright">
-	
-	  
+
+
         <h2>PROBLEMS</h2></br>
-        <input type="button" id="addProblemBtn" value="Add Problem" onclick="" />
+        <input type="button" id="addProblemBtn" value="Add Problem" onclick="openAddProblemDialog();" />
         <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="" />
         </br>
         </br>
@@ -64,7 +74,7 @@
             </tr>
           </table></br>
         </div>
-        
+
     </div>
 
 
@@ -76,7 +86,50 @@
     </div>
     <div id="left2"></div>
     <div id="right2"></div>
-    
+    <div  id="addProblemModal" class="modal">
+      <div id="addProblemModalContent" class="modal-content">
+        <h1 style="width:100%;">Add Problem</h1>
+        <div class="modal-content-wrapper">
+        <div class="modal-content-left">
+          <div>
+          <label class="sectionHeader">Problem Type:</label></br>
+          <select class="problemTypeSel">
+          </select>
+          <label class="sectionHeader">Problem Description:</label></br>
+          <textarea></textarea>
+          </div>
+          <div>
+            <h2>Hardware</h2>
+            <label class="sectionHeader">Serial No.:</label></br>
+            <input type="text" /></br>
+            <label class="sectionHeader">Type:</label></br>
+            <input type="text" /></br>
+            <label class="sectionHeader">Make:</label></br>
+            <input type="text" /></br>
+          </div>
+          <div>
+            <h2>Software</h2>
+            <label class="sectionHeader">Operating System:</label></br>
+            <input type="text" /></br>
+            <label class="sectionHeader">Software:</label></br>
+            <input type="text" /></br>
+            <input type="button" id="checkLicenseBtn" value="Check License" onclick=""/></br>
+          </div>
+        </div>
+        <div class="modal-content-right">
+        <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" />
+        <table>
+          <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Count</th>
+          </tr>
+        </table>
+        <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeAddProblemDialog();" />
+        <input type="button" id="finishAddProblemBtn" value="Add" onclick="closeAddProblemDialog();" />
+      </div>
+    </div>
+      </div>
     </div>
   </body>
 </html>
