@@ -47,6 +47,10 @@ h1 {
 	text-align: center;
 
 }
+h3{
+text-align:left;
+font-size:24px;
+}
 
 
 #logCallButton{
@@ -181,17 +185,22 @@ h1 {
 /*2nd Page*/
 #content{
 	height:400px;
-	background-color:;
+	border:1px solid white;
+	background-color:#e0e0e0;
 }
 #contentleft {
 display: inline-block;
 float:left;
 	width: 35%;
 	border-right:1px solid black;
+	margin-left:5%;
+	margin-top:2%;
 }
 #contentright {
 margin-left:0%;
+	margin-top:2%;
 display: inline-block;
+text-align:center;
 	width: 50%;
 }
 #callLogButtons{
@@ -220,13 +229,14 @@ input {
 	background-color: #5b5b5b;
     border: none;
     color: white;
-    padding: 4px 8px;
+    padding: 4px 9px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom:3%;
     border-radius: 2px;
+    margin-left:10px;
 }
 #lookupCallerBtn:hover{
 	background-color: #444444;
@@ -245,10 +255,6 @@ h2{
 textarea{
   display: inline-block;
   float: left;
-}
-
-#lookupCallerBtn{
-	margin-left:10px;
 }
 
 #addProblemBtn{
@@ -313,38 +319,37 @@ textarea{
 
 
 #cancelCallBtn{
-	background-color: #7a1a1a;
+	background-color: #3f4a4f;
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 8px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-bottom:3%;
     border-radius: 2px;
     margin-left: 10px;
+    	margin-top:5%;
 }
 #cancelCallBtn:hover{
-	background-color: #561313;
+	background-color: #282f33;
 }
 
 #logCallBtn{
-	background-color: #687f00;
+	background-color: #67c1e5;
     border: none;
     color: white;
-    padding: 15px 25px;
+    padding: 8px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-bottom:3%;
     border-radius: 2px;
+    margin-left:20px;
 }
 #logCallBtn:hover{
-	background-color: #536600;
+	background-color: #4da0c1;
 }
-
 
 
 
