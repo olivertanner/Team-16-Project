@@ -37,6 +37,14 @@ body {
   flex: 0 0 20em;
 }
 
+#left2 {
+  order: -1;
+  flex: 0 0 10em;
+}
+#right2 {
+  flex: 0 0 10em;
+}
+
 #logoLeft{
 	display:inline-block;
 	margin-top:20px;
@@ -171,8 +179,6 @@ font-size:24px;
 	background-color:#95bcd8;
 }
 
-
-
 #rowButtonsBottom{
 	margin: 0 auto;
 	text-align: left;
@@ -184,25 +190,24 @@ font-size:24px;
 
 /*2nd Page*/
 #content{
-	overflow: auto;
-	padding: 10px;
-	border:1px solid white;
+	overflow:auto;
+	border:1px solid black;
 	background-color:#e0e0e0;
+
 }
 #contentleft {
 display: inline-block;
 float:left;
 	width: 35%;
 	border-right:1px solid black;
-	margin-left:5%;
-	margin-top:2%;
+	padding:15px;
+
 }
 #contentright {
-margin-left:0%;
-	margin-top:2%;
 display: inline-block;
 text-align:center;
-	width: 50%;
+	width: 65%;
+		padding:15px;
 }
 #callLogButtons{
 text-align:center;
@@ -254,6 +259,7 @@ h2{
 }
 
 textarea{
+	width:100%;
   display: inline-block;
   float: left;
   resize:none;
@@ -304,7 +310,7 @@ textarea{
   max-height: 80%;
 }
 #problemTable, th {
-    height: 10%;
+    height: 6%;
 }
 #problemTable, th, td {
     border: 1px solid black;
