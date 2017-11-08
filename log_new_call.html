@@ -96,15 +96,16 @@
     <div id="right2"></div>
     <div  id="addProblemModal" class="modal">
       <div id="addProblemModalContent" class="modal-content">
+      	<input type="button" id="exitBtn" value="&times" onclick="closeAddProblemDialog();" />
         <h1 style="width:100%;">Add Problem</h1>
         <div class="modal-content-wrapper">
         <div class="modal-content-left">
           <div>
           <label class="sectionHeader">Problem Type:</label></br>
           <select class="problemTypeSel">
-          </select>
+          </select></br>
           <label class="sectionHeader">Problem Description:</label></br>
-          <textarea></textarea>
+          <textarea id="addProblemTxtArea"></textarea>
           </div>
           <div>
             <h2>Hardware</h2>
@@ -125,14 +126,14 @@
           </div>
         </div>
         <div class="modal-content-right">
-        <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" />
-        <table>
+        <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" /></br></br>
+        <table id="specialistTable">
           <tr>
             <th>Type</th>
             <th>Name</th>
             <th>Count</th>
           </tr>
-        </table>
+        </table></br>
         <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeAddProblemDialog();" />
         <input type="button" id="finishAddProblemBtn" value="Add" onclick="closeAddProblemDialog();" />
       </div>
