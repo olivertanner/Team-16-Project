@@ -143,6 +143,15 @@
       }
       $("#callLogTable > tbody:last-child").append(rows);
     }
+
+    function openAssignSpecialistDialog(){
+      $("#assignSpecialistModal").attr("style","display:inline-block");
+    }
+
+    function closeAssignSpecialistDialog(){
+        $("#assignSpecialistModal").removeAttr("style");
+        $("#assignSpecialistModal").attr("style","display:none");
+      }
     </script>
   </head>
   <body>
@@ -171,7 +180,7 @@
       </table>
     </div>
       <div>
-        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="" />
+        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
         <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
         <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
       </div>
@@ -259,6 +268,55 @@
       <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
       <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
     </div>
+  </div>
+</div>
+
+<div  id="assignSpecialistModal" class="modal">
+  <div id="assignSpecialistModalContent" class="modal-content">
+    <input type="button" id="exitBtn" value="&times" onclick="closeAssignSpecialistDialog();" />
+    <h1 style="width:100%;">Assign Specialist</h1>
+    <div class="modal-content-wrapper">
+    <div class="modal-content-left">
+      <div>
+      <label class="sectionHeader">Problem Type:</label></br>
+      <select class="problemTypeSel" disabled>
+      </select></br>
+      <label class="sectionHeader">Problem Description:</label></br>
+      <textarea id="addProblemTxtArea" disabled></textarea>
+      </div>
+      <div>
+        <h2>Hardware</h2>
+        <label class="sectionHeader">Serial No.:</label></br>
+        <input type="text" disabled /></br>
+        <label class="sectionHeader">Type:</label></br>
+        <input type="text" disabled /></br>
+        <label class="sectionHeader">Make:</label></br>
+        <input type="text" disabled /></br>
+      </div>
+      <div>
+        <h2>Software</h2>
+        <label class="sectionHeader">Operating System:</label></br>
+        <input type="text" disabled /></br>
+        <label class="sectionHeader">Software:</label></br>
+        <input type="text" disabled/></br>
+      </div>
+    </div>
+    <div class="modal-content-right">
+    <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" /></br></br>
+    <table id="specialistTable">
+      <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    </table></br></br>
+    <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeAssignSpecialistDialog();" />
+    <input type="button" id="finishAddProblemBtn" value="Add" onclick="closeAssignSpecialistDialog();" />
+  </div>
+</div>
   </div>
 </div>
   </body>
