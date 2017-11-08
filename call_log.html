@@ -9,19 +9,48 @@
     <script type="text/javascript">
 
 
+    var log = {};
     $(document).ready(function(){ //on page open
+      var options = `<option value='empty'></option>
+      <option value='Networking'>Networking</option>
+      <option value='Printing'>Printing</option>
+      <option value='Operating System'>Operating System</option>
+      <option value='Mouse'>Mouse</option>
+      <option value='Keyboard'>Keyboard</option>`;
+      $(".problemTypeSel").append(options);
 
-
-      var calls = [
+      log.calls = [
         ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["2","Ben","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Assigned"]
+        ["2","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["5","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["7","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["8","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["9","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["10","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["11","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["12","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["13","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["14","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["15","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["16","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["17","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
+        ["18","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["19","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["20","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"],
       ];
       var rows = "";
-      for (var i = 0; i < calls.length; i++) {
+      for (var i = 0; i < log.calls.length; i++) {
         var row = "<tr>";
-        for (var j = 0; j < calls[i].length; j++) {
-          row += "<td>"+calls[i][j]+"</td>";
+        for (var j = 0; j < log.calls[i].length; j++) {
+          if (j == 4){
+            row += "<td class='typetd'>"+log.calls[i][j]+"</td>";
+          } else {
+            row += "<td>"+log.calls[i][j]+"</td>";
+          }
+
         }
         row += "</tr>";
         rows += row;
@@ -34,10 +63,37 @@
         } else {
           $(this).addClass("selected").siblings().removeClass("selected");
       }
-        var value=$(this).find("td:first").html();
+        showProblemDetails();
       });
+
+      $("#detailsProblemType").on("change", function(){
+        $("#cancelEditBtn").prop("disabled", false);
+        $("#saveEditBtn").prop("disabled", false);
+      })
     })
 
+    function showProblemDetails(){
+      var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
+      //["20","Ben","01-01-2017","13:00:00","Networking","Tom","Pending"]
+      $("#detailsID").val(log.calls[row][0]);
+      $("#detailsCaller").val(log.calls[row][1]);
+      $("#detailsDate").val(log.calls[row][2]);
+      $("#detailsTime").val(log.calls[row][3]);
+      $("#detailsProblemType").val(log.calls[row][4]).change();
+      $("#detailsSpecialist").val(log.calls[row][5]);
+      $("#detailsStatus").val(log.calls[row][6]);
+    }
+
+    function cancelEdit(){
+      var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
+      $("#detailsProblemType").val(log.calls[row][4]).change();
+    }
+
+    function saveEdit(){
+      var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
+      log.calls[row][4] = $("#detailsProblemType").val();
+      $("#callLogTable tr.selected td.typetd").text($("#detailsProblemType").val()).change();
+    }
     </script>
   </head>
   <body>
@@ -57,63 +113,100 @@
             <th>Date</th>
             <th>Time</th>
             <th>Problem Type</th>
-            <th>Specialist Assigned</th>
+            <th>Specialist</th>
             <th>Status</th>
           </tr>
         </tbody>
       </table>
+    </div>
       <div>
-        <input type="button" id="editProblemButton" value="Edit Problem" onclick="" />
-        <input type="button" id="checkDetailsButton" value="Check Details" onclick="" />
         <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
         <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
       </div>
     </div>
+  </div>
 
-    <div style="margin:auto 0;width:20%;float:left;display:inline-block;">
-
+  <div id="left" style="display:flex;align-items:center;padding:10px;">
+    <div style="margin:auto;">
+      <h2>Filter</h2>
+      <div style="display: inline-block; text-align:left;">
+        <label>Problem ID</label><br/>
+        <input type="text"/>
+      </div><br/>
+      <div style="display: inline-block; text-align:left;">
+        <label>Caller Name</label><br/>
+        <input type="text"/>
+      </div><br/>
+      <div style="display: inline-block; text-align:left;">
+        <label>Problem Type</label><br/>
+        <select class="problemTypeSel">
+        </select>
+      </div><br/>
+      <div style="display: inline-block; text-align:left;">
+        <label>Status</label><br/>
+        <select>
+          <option value="all">All</option>
+          <option value="assigned">Assigned</option>
+          <option value="pending">Pending</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div><br/>
+      <input type="button" id="applyFiltersBtn" value="Apply" onclick="" />
     </div>
   </div>
-  <div id="left"></div>
+
   <div id="right" style="display:flex;align-items:center;padding:10px;">
-    <div>
+    <div style="margin:0 auto;">
     <h2>Problem Details</h2>
     <div style="display: inline-block; text-align:left;">
+      <label>Problem ID</label><br/>
+      <input type="text" id="detailsID" disabled/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
       <label>Helpdesk Operator</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsOperator" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Caller</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsCaller" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Status</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsStatus" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Date</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsDate" disabled/>
+    </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <label>Time</label><br/>
+      <input type="text" id="detailsTime" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Problem Type</label><br/>
-      <input type="text" readonly/>
+      <select class="problemTypeSel" id="detailsProblemType">
+      </select>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Description</label><br/>
-      <input type="text" readonly/>
+      <textarea rows=5 id="detailsDesc" disabled></textarea>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Hardware</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsHardware" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Software</label><br/>
-      <input type="text" readonly/>
+      <input type="text" id="detailsSoftware" disabled/>
     </div><br/>
     <div style="display: inline-block; text-align:left;">
-      <label>Specialist Assigned</label><br/>
-      <input type="text" readonly/>
+      <label>Specialist</label><br/>
+      <input type="text" id="detailsSpecialist" disabled/>
     </div><br/>
+    <div style="display: inline-block; text-align:left;">
+      <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
+      <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
+    </div>
   </div>
 </div>
   </body>
