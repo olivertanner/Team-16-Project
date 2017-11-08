@@ -61,7 +61,7 @@
       };
       $("#callLogTable > tbody:last-child").append(rows);
 
-      $("#callLogTable tbody tr").click(function(){
+      $(document).on("click", "#callLogTable tbody tr", function(e) {
         if($(this).hasClass("selected")){
           $(this).removeClass("selected");
         } else {
@@ -99,6 +99,50 @@
       log.calls[row][4] = problemType;
       $("#callLogTable tr.selected td.typetd").text(problemType).change();
     }
+
+    function filter(){
+      $("#callLogTable > tbody").html("");
+      var onID = false,
+        onName = false,
+        onType = false,
+        onStatus = false;
+      if ($.trim($("#filterID").val()).length > 0){
+        onID = true;
+      }
+      if ($.trim($("#filterName").val()).length > 0){
+        onName = true;
+      }
+      if ($("#filterType option:selected").text() != ""){
+        onType = true;
+      }
+      if ($("#filterStatus option:selected").val() != "All"){
+        onStatus = true;
+      }
+      var rows = "";
+      for (var i = 0; i < log.calls.length; i++) {
+        if ((onID ? $("#filterID").val() == log.calls[i][0] : true) &&
+          (onName ? $("#filterName").val() == log.calls[i][1] : true) &&
+          (onType ? $("#filterType option:selected").text() == log.calls[i][4] : true) &&
+          (onStatus ? $("#filterStatus option:selected").text() == log.calls[i][6] : true)){
+            var row = "<tr>";
+            for (var j = 0; j < log.calls[i].length; j++) {
+              if (j == 4){
+                row += "<td class='typetd'>"+log.calls[i][j]+"</td>";
+              } else if (j == 5) {
+                row += "<td class='specialisttd'>"+log.calls[i][j]+"</td>";
+              } else if (j == 6) {
+                row += "<td class='statustd'>"+log.calls[i][j]+"</td>";
+              } else {
+                row += "<td>"+log.calls[i][j]+"</td>";
+              }
+
+            }
+            row += "</tr>";
+            rows += row;
+          }
+      }
+      $("#callLogTable > tbody:last-child").append(rows);
+    }
     </script>
   </head>
   <body>
@@ -111,7 +155,7 @@
       <div>
       <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.html';" /><br/>
       <table id="callLogTable" border=1;>
-        <tbody>
+        <thead>
           <tr>
             <th>Problem ID</th>
             <th>Caller</th>
@@ -121,10 +165,13 @@
             <th>Specialist</th>
             <th>Status</th>
           </tr>
+        </thead>
+        <tbody>
         </tbody>
       </table>
     </div>
       <div>
+        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="" />
         <input type="button" id="checkSolutionButton" value="Check Solution" onclick="" />
         <input type="button" id="closeProblemButton" value="Close Problem" onclick="" />
       </div>
@@ -136,27 +183,27 @@
       <h2>Filter</h2>
       <div style="display: inline-block; text-align:left;">
         <label>Problem ID</label><br/>
-        <input type="text"/>
+        <input type="text" id="filterID"/>
       </div><br/>
       <div style="display: inline-block; text-align:left;">
         <label>Caller Name</label><br/>
-        <input type="text"/>
+        <input type="text" id="filterName"/>
       </div><br/>
       <div style="display: inline-block; text-align:left;">
         <label>Problem Type</label><br/>
-        <select class="problemTypeSel">
+        <select class="problemTypeSel" id="filterType">
         </select>
       </div><br/>
       <div style="display: inline-block; text-align:left;">
         <label>Status</label><br/>
-        <select>
-          <option value="all">All</option>
-          <option value="assigned">Assigned</option>
-          <option value="pending">Pending</option>
-          <option value="closed">Closed</option>
+        <select id="filterStatus">
+          <option value="All">All</option>
+          <option value="Assigned">Assigned</option>
+          <option value="Pending">Pending</option>
+          <option value="Closed">Closed</option>
         </select>
       </div><br/>
-      <input type="button" id="applyFiltersBtn" value="Apply" onclick="" />
+      <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
     </div>
   </div>
 
@@ -206,7 +253,7 @@
     </div><br/>
     <div style="display: inline-block; text-align:left;">
       <label>Specialist</label><br/>
-      <input type="text" id="detailsSpecialist"/>
+      <input type="text" id="detailsSpecialist" disabled/>
     </div><br/>
     <div>
       <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
