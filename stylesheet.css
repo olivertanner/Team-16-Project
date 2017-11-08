@@ -157,10 +157,10 @@ font-size:24px;
 	width: 100%;
 	margin:auto;
   overflow-y: scroll;
-  max-height: 80%;
+  max-height: 75%;
 }
 #callLogTable, th {
-    height: 30%;
+    max-height: 6%;
 }
 #callLogTable, th, td {
     border: 1px solid black;
@@ -169,11 +169,11 @@ font-size:24px;
     background-color: #b5b5b5;
     cursor: default;
 }
-#callLogTable tr:first-child {
+#callLogTable thead tr {
     background-color: #47566d;
     color: white;
 }
-#callLogTable tr:first-child:hover {
+#callLogTable thead tr:first-child:hover {
     background-color: #47566d;
 }
 
