@@ -172,7 +172,15 @@
           var probID = $("#callLogTable tbody tr.selected td:first").html();
           $("#closeProblemID").html("Problem ID: "+probID);
           openModalDialog($("#closeProblemModal"));
+        }else {
+          $("#errorTitle").html("Cannot Close Problem");
+          $("#errorMsg").html("Problem is already closed.");
+          openModalDialog($("#errorModal"));
         }
+      } else {
+        $("#errorTitle").html("No Problem Selected");
+        $("#errorMsg").html("Select a problem to close.");
+        openModalDialog($("#errorModal"));
       }
     }
 
@@ -182,7 +190,15 @@
           var probID = $("#callLogTable tbody tr.selected td:first").html();
           $("#viewSolutionProblemID").html("Problem ID: "+probID);
           openModalDialog($("#viewSolutionModal"));
+        } else {
+          $("#errorTitle").html("No Solution");
+          $("#errorMsg").html("Problem is not closed. No solution found.");
+          openModalDialog($("#errorModal"));
         }
+      } else {
+        $("#errorTitle").html("No Problem Selected");
+        $("#errorMsg").html("Select a problem to view the solution.");
+        openModalDialog($("#errorModal"));
       }
     }
     </script>
@@ -403,7 +419,19 @@
           <div style="display:inline-block;margin:auto;">
             <input type="button" id="cancelProblemBtn" value="Exit" onclick="closeModalDialog($('#viewSolutionModal'));" />
           </div>
+      </div>
+    </div>
 
+    <div  id="errorModal" class="modal">
+      <div id="errorModalContent" class="modal-content" style="width:20%;">
+        <input type="button" id="exitBtn" value="&times" style="float:right;margin-left:93%;" onclick="closeModalDialog($('#errorModal'));" />
+        <h1 id="errorTitle"></h1>
+          <div class="modal-content-left" style="margin:auto;border:none;width:100%;">
+            <label id="errorMsg" class="sectionHeader"></label></br>
+          </div>
+          <div style="display:inline-block;margin:auto;float:right;">
+            <input type="button" id="cancelProblemBtn" value="OK" onclick="closeModalDialog($('#errorModal'));" />
+          </div>
       </div>
     </div>
   </body>
