@@ -170,6 +170,7 @@
       if  ($("#callLogTable tbody tr.selected").length){
         if ($("#callLogTable tbody tr.selected td:last").html() != "Closed"){
           var probID = $("#callLogTable tbody tr.selected td:first").html();
+          $("#closeProblemID").html("Problem ID: "+probID);
           openModalDialog($("#closeProblemModal"));
         }
       }
