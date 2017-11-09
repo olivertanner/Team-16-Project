@@ -101,11 +101,23 @@
         <div class="modal-content-wrapper">
         <div class="modal-content-left">
           <div>
-          <label class="sectionHeader">Problem Type:</label></br>
-          <select class="problemTypeSel">
-          </select></br>
-          <label class="sectionHeader">Problem Description:</label></br>
-          <textarea id="addProblemTxtArea"></textarea>
+            <div>
+              <div style="display:inline-block;">
+                <label class="sectionHeader">Problem Type:</label></br>
+                <select class="problemTypeSel">
+                  <option value='empty'></option>
+                  <option value='Networking'>Networking</option>
+                  <option value='Printing'>Printing</option>
+                  <option value='Operating System'>Operating System</option>
+                  <option value='Mouse'>Mouse</option>
+                  <option value='Keyboard'>Keyboard</option>
+                </select>
+              </div>
+              <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" style="float:right;margin:0 auto;"/>
+            </div>
+            </br>
+            <label class="sectionHeader">Problem Description:</label></br>
+            <textarea id="addProblemTxtArea"></textarea>
           </div>
           <div>
             <h2>Hardware</h2>
@@ -126,7 +138,7 @@
           </div>
         </div>
         <div class="modal-content-right">
-        <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" /></br></br>
+
         <table id="specialistTable">
           <tr>
             <th>Type</th>
