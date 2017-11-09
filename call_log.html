@@ -166,7 +166,19 @@
       dialog.attr("style","display:none;")
     }
 
-    function openCloseProblemDialog(dialog){
+    function openAssignSpecialistDialog(){
+      if  ($("#callLogTable tbody tr.selected").length){
+        if ($("#callLogTable tbody tr.selected td:last").html() != "None"){
+          openModalDialog($("#assignSpecialistModal"));
+        }
+      } else {
+        $("#errorTitle").html("No Problem Selected");
+        $("#errorMsg").html("Select a problem to assign a specialist.");
+        openModalDialog($("#errorModal"));
+      }
+    }
+
+    function openCloseProblemDialog(){
       if  ($("#callLogTable tbody tr.selected").length){
         if ($("#callLogTable tbody tr.selected td:last").html() != "Closed"){
           var probID = $("#callLogTable tbody tr.selected td:first").html();
@@ -184,7 +196,7 @@
       }
     }
 
-    function openViewSolutionDialog(dialog){
+    function openViewSolutionDialog(){
       if  ($("#callLogTable tbody tr.selected").length){
         if ($("#callLogTable tbody tr.selected td:last").html() == "Closed"){
           var probID = $("#callLogTable tbody tr.selected td:first").html();
@@ -228,9 +240,9 @@
         </table>
       </div>
       <div>
-        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openModalDialog($('#assignSpecialistModal'));" />
-        <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog($('#viewSolutionModal'));" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog($('#closeProblemModal'));" />
+        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
+        <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog();" />
       </div>
     </div>
 
