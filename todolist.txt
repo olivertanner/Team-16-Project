@@ -4,5 +4,6 @@ Close Problem --- DONE
 Check Solution --- DONE
 Caller lookup
 Specialist lookup
+Hardware and software fields on call log page
 Login?
 Seperate specialist page?
