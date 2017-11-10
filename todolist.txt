@@ -1,5 +1,8 @@
-Assign Specialist Button
-Filter
-Close Problem
-Check Solution
+Assign Specialist Button --- DONE
+Filter --- DONE
+Close Problem --- DONE
+Check Solution --- DONE
 Caller lookup
+Specialist lookup
+Login?
+Seperate specialist page?
