@@ -9,7 +9,6 @@
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
 
-
     var log = {};
     $(document).ready(function(){ //on page open
       var options = `<option value='empty'></option>
@@ -41,6 +40,43 @@
         ["18","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
         ["19","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
         ["20","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["21","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["22","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["23","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["24","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["25","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["26","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["27","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["28","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["29","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["7","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["8","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["9","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["10","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["11","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["12","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["13","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["14","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["15","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["16","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["17","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["18","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["19","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["20","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["21","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["22","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["23","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["24","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["25","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
+        ["26","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+        ["27","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+        ["28","Ben","01-01-2017","13:00:00","Networking","None","Pending"]
       ];
       var rows = "";
       for (var i = 0; i < log.calls.length; i++) {
@@ -227,22 +263,24 @@
       <img  src="images/banner.png" width="300" height="100" id="banner"/>
       <img  src="images/logo.png" width="110" height="90" id="logoRight"/>
       </header>
-      <div>
-        <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.html';" /><br/>
-        <table id="callLogTable" border=1;>
-          <thead>
-            <tr>
-              <th>Problem ID</th>
-              <th>Caller</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Problem Type</th>
-              <th>Specialist</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+      <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.html';" /><br/>
+      <div style="position:relative;">
+        <div style="height:600px;overflow-y:scroll;border:1px solid black;">
+          <table id="callLogTable">
+            <thead>
+              <tr>
+                <th>Problem ID</th>
+                <th>Caller</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Problem Type</th>
+                <th>Specialist</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
       </div>
       <div>
         <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
