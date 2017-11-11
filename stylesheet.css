@@ -326,7 +326,7 @@ width:100%;
   overflow: scroll;
   max-height: 80%;
 }
-#problemTable, th {
+#problemTable thead {
     height: 6%;
 }
 #problemTable, th, td {
@@ -336,11 +336,11 @@ width:100%;
     background-color: #b5b5b5;
     cursor: default;
 }
-#problemTable tr:first-child {
+#problemTable thead tr:first-child {
     background-color: #47566d;
     color: white;
 }
-#problemTable tr:first-child:hover {
+#problemTable thead tr:first-child:hover {
     background-color: #47566d;
 }
 
@@ -463,7 +463,7 @@ width:100%;
   overflow: scroll;
   max-height: 80%;
 }
-#specialistTable, th {
+#specialistTable th {
     height: 6%;
 }
 #specialistTable, th, td {
@@ -473,11 +473,11 @@ width:100%;
     background-color: #b5b5b5;
     cursor: default;
 }
-#specialistTable tr:first-child {
+#specialistTable thead tr:first-child {
     background-color: #47566d;
     color: white;
 }
-#specialistTable tr:first-child:hover {
+#specialistTable thead tr:first-child:hover {
     background-color: #47566d;
 }
 
@@ -543,4 +543,48 @@ width:100%;
 }
 #cancelProblemBtn:hover{
 	background-color: #9b2020;
+}
+#callerLookupTableWrapper {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:#e0e0e0;
+  overflow:auto;
+  display:none;
+  z-index:1;
+}
+#callerTable{
+	text-align: center;
+	border-collapse: collapse;
+	width: 90%;
+	margin:auto;
+  overflow: scroll;
+  max-height: 80%;
+}
+#callerTable th {
+    height: 6%;
+}
+#callerTable, th, td {
+    border: 1px solid black;
+}
+#callerTable tr:hover, #specialistTable tr:focus {
+    background-color: #b5b5b5;
+    cursor: default;
+}
+#callerTable thead tr:first-child {
+    background-color: #47566d;
+    color: white;
+}
+#callerTable thead tr:first-child:hover {
+    background-color: #47566d;
+}
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; 
 }

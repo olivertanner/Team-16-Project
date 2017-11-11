@@ -48,35 +48,7 @@
         ["26","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
         ["27","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
         ["28","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["29","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["7","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["8","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["9","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["10","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["11","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["12","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["13","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["14","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["15","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["16","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["17","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["18","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["19","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["20","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["21","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["22","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["23","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["24","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["25","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-        ["26","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-        ["27","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-        ["28","Ben","01-01-2017","13:00:00","Networking","None","Pending"]
+        ["29","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"]
       ];
       var rows = "";
       for (var i = 0; i < log.calls.length; i++) {
@@ -355,16 +327,30 @@
           <textarea rows=4 id="detailsDesc" disabled></textarea>
         </div><br/>
         <div style="display: inline-block; text-align:left;">
-          <label>Hardware</label><br/>
-          <input type="text" id="detailsHardware" disabled/>
+          <label>Specialist</label><br/>
+          <input type="text" id="detailsSpecialist" disabled/>
+        </div><br/>
+        <strong>Hardware</strong><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Serial No.</label><br/>
+          <input type="text" id="detailsSerialNo" disabled/>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Make</label><br/>
+          <input type="text" id="detailsMake" disabled/>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Model</label><br/>
+          <input type="text" id="detailsModel" disabled/>
+        </div><br/>
+        <strong>Software</strong><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Operating System</label><br/>
+          <input type="text" id="detailsSoftware" disabled/>
         </div><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
-          <label>Specialist</label><br/>
-          <input type="text" id="detailsSpecialist" disabled/>
         </div><br/>
         <div>
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
