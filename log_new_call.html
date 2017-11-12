@@ -54,6 +54,14 @@
       }
     }
 
+    function addProblem(){
+      var problemID = Math.floor(Math.random()*1000);
+      var problemType = $("#addProblemTypeSel option:selected").text();
+      var specialistName = $("#specialistTable tr.selected").length ? $("#specialistTable tr.selected td:first").next().text() : "None";
+      var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+specialistName+'</td></tr>';
+      $("#problemTable tbody").append(row);
+      closeAddProblemDialog();
+    }
 
     $(document).on("dblclick", "#callerTable tbody tr", function(e) {
       $("#idNoInput").val($("#callerTable tbody tr.selected td#callerIDtd").html());
@@ -196,7 +204,7 @@
     </div>
       <div style="display: inline-block; text-align:left;">
         <input type="button" id="cancelCallBtn" value="Cancel" onclick="location.href='call_log.html';" />
-        <input type="button" id="logCallBtn" value="Log Call" onclick="" />
+        <input type="button" id="logCallBtn" value="Log Call" onclick="location.href='call_log.html';" />
       </div>
     </div>
     <div id="left2"></div>
@@ -262,7 +270,7 @@
           </div>
           </br></br>
         <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeAddProblemDialog();" />
-        <input type="button" id="finishAddProblemBtn" value="Add" onclick="closeAddProblemDialog();" />
+        <input type="button" id="finishAddProblemBtn" value="Add" onclick="addProblem();" />
       </div>
     </div>
       </div>
