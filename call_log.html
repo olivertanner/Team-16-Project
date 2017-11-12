@@ -70,7 +70,7 @@
       };
       $("#callLogTable > tbody:last-child").append(rows);
 
-      $(document).on("click", "#callLogTable tbody tr", function(e) {
+      $(document).on("click", "table tbody tr", function(e) {
         if($(this).hasClass("selected")){
           $(this).removeClass("selected");
         } else {
@@ -226,6 +226,17 @@
         openModalDialog($("#errorModal"));
       }
     }
+
+    function lookupSpecialists(){
+      var problemType = $("#assignSpecialistTypeSel option:selected").text();
+      if (problemType !== ""){
+        $("#specialistTable tbody").html("");
+        var rows = "";
+        var row = '<tr><td>'+problemType+'</td><td>Alan</td><td>0</td></tr>';
+        rows = row + row + row + row + row + row + row + row + row + row;
+        $("#specialistTable tbody").append(rows);
+      }
+    }
     </script>
   </head>
   <body>
@@ -371,20 +382,14 @@
               <div>
                 <div style="display:inline-block;">
                   <label class="sectionHeader">Problem Type:</label></br>
-                  <select class="problemTypeSel">
-                    <option value='empty'></option>
-                    <option value='Networking'>Networking</option>
-                    <option value='Printing'>Printing</option>
-                    <option value='Operating System'>Operating System</option>
-                    <option value='Mouse'>Mouse</option>
-                    <option value='Keyboard'>Keyboard</option>
+                  <select id="assignSpecialistTypeSel" class="problemTypeSel">
                   </select>
                 </div>
-                <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" />
+                <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="lookupSpecialists();" />
               </div>
               </br>
               <label class="sectionHeader">Problem Description:</label></br>
-              <textarea id="addProblemTxtArea" disabled></textarea>
+              <textarea id="addProblemTxtArea" disabled></textarea><br/>
             </div>
             <div>
               <h2>Hardware</h2>
@@ -404,16 +409,19 @@
             </div>
           </div>
           <div class="modal-content-right">
-            <table id="specialistTable">
-              <thead>
-                <tr>
-                  <th>Type</th>
-                  <th>Name</th>
-                  <th>Count</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table></br></br>
+            <div style="height:300px;overflow:auto;">
+              <table id="specialistTable">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Count</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            </br></br>
             <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeModalDialog($('#assignSpecialistModal'));" />
             <input type="button" id="finishAddProblemBtn" value="Assign" onclick="closeModalDialog($('#assignSpecialistModal'));" />
           </div>

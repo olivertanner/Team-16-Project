@@ -35,9 +35,22 @@
 
     function lookupCaller(){
       if ($("#callerLookupTableWrapper:visible").length == 0){
+        $("#lookupCallerBtn").val("Back");
         $("#callerLookupTableWrapper").attr("style","display:inline-block;");
       } else {
+        $("#lookupCallerBtn").val("Lookup");
         $("#callerLookupTableWrapper").attr("style","display:none;");
+      }
+    }
+
+    function lookupSpecialists(){
+      var problemType = $("#addProblemTypeSel option:selected").text();
+      if (problemType !== ""){
+        $("#specialistTable tbody").html("");
+        var rows = "";
+        var row = '<tr><td>'+problemType+'</td><td>Alan</td><td>0</td></tr>';
+        rows = row + row + row + row + row + row + row + row + row + row;
+        $("#specialistTable tbody").append(rows);
       }
     }
 
@@ -47,6 +60,7 @@
       $("#nameInput").val($("#callerTable tbody tr.selected td#callerNametd").html());
       $("#jobTitleInput").val($("#callerTable tbody tr.selected td#callerJobtd").html());
       $("#deptInput").val($("#callerTable tbody tr.selected td#callerDepttd").html());
+      $("#lookupCallerBtn").val("Lookup");
       $("#callerLookupTableWrapper").attr("style","display:none;")
     });
     </script>
@@ -180,8 +194,6 @@
         </table></br>
       </div>
     </div>
-
-
       <div style="display: inline-block; text-align:left;">
         <input type="button" id="cancelCallBtn" value="Cancel" onclick="location.href='call_log.html';" />
         <input type="button" id="logCallBtn" value="Log Call" onclick="" />
@@ -201,7 +213,7 @@
             <div>
               <div style="display:inline-block;">
                 <label class="sectionHeader">Problem Type:</label></br>
-                <select class="problemTypeSel">
+                <select id="addProblemTypeSel" class="problemTypeSel">
                   <option value='empty'></option>
                   <option value='Networking'>Networking</option>
                   <option value='Printing'>Printing</option>
@@ -210,7 +222,7 @@
                   <option value='Keyboard'>Keyboard</option>
                 </select>
               </div>
-              <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="" />
+              <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="lookupSpecialists();" />
             </div>
             </br>
             <label class="sectionHeader">Problem Description:</label></br>
@@ -235,17 +247,20 @@
           </div>
         </div>
         <div class="modal-content-right">
-
-        <table id="specialistTable">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Count</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table></br></br>
+          <h1>Specialists</h1>
+          <div style="height:300px;overflow:auto;">
+            <table id="specialistTable">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Name</th>
+                  <th>Count</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          </br></br>
         <input type="button" id="cancelProblemBtn" value="Cancel" onclick="closeAddProblemDialog();" />
         <input type="button" id="finishAddProblemBtn" value="Add" onclick="closeAddProblemDialog();" />
       </div>
