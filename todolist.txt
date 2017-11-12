@@ -5,6 +5,6 @@ Check Solution --- DONE
 Caller lookup --- DONE
 Specialist lookup --- DONE
 Hardware and software fields on call log page --- DONE
-Add/Remove problem
+Add/Remove problem --- DONE
 Login?
 Seperate specialist page?
