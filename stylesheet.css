@@ -3,11 +3,11 @@
   box-sizing: border-box;
 }
 html{
-  min-height: 100%;
+  height: 100%;
   background-color: #f4f4f4;
 }
 body {
-  min-height: 95vh;
+  height: 95%;
   display: flex;
   flex-direction: row;
   flex: 1;
@@ -32,9 +32,16 @@ body {
 #left {
   order: -1;
   flex: 0 0 10em;
+  display:flex;
+  align-items:center;
+  padding:10px;
 }
 #right {
   flex: 0 0 20em;
+  display:flex;
+  align-items:center;
+  overflow:auto;
+  padding-top:5%;
 }
 
 #left2 {
@@ -586,5 +593,5 @@ width:100%;
      -khtml-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
-            user-select: none; 
+            user-select: none;
 }
