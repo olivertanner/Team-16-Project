@@ -2,8 +2,9 @@ Assign Specialist Button --- DONE
 Filter --- DONE
 Close Problem --- DONE
 Check Solution --- DONE
-Caller lookup
-Specialist lookup
-Hardware and software fields on call log page
+Caller lookup --- DONE
+Specialist lookup --- DONE
+Hardware and software fields on call log page --- DONE
+Add/Remove problem
 Login?
 Seperate specialist page?
