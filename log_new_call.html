@@ -185,7 +185,7 @@
 	    <div id="contentright">
         <h2>PROBLEMS</h2></br>
         <input type="button" id="addProblemBtn" value="Add Problem" onclick="openAddProblemDialog();" />
-        <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="" />
+        <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="$('#problemTable tr.selected').remove();" />
         </br>
         </br>
         <table id="problemTable">
