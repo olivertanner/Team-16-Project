@@ -258,7 +258,7 @@
       <img  src="images/banner.png" width="300" height="100" id="banner"/>
       <img  src="images/logo.png" width="110" height="90" id="logoRight"/>
       </header>
-      <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.html';" /><br/>
+      <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.php';" /><br/>
       <div style="position:relative;">
         <div style="height:60%;overflow-y:scroll;border:1px solid black;">
           <table id="callLogTable" class="noselect">
