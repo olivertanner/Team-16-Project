@@ -203,8 +203,8 @@
       </div>
     </div>
       <div style="display: inline-block; text-align:left;">
-        <input type="button" id="cancelCallBtn" value="Cancel" onclick="location.href='index.php';" />
-        <input type="button" id="logCallBtn" value="Log Call" onclick="location.href='index.php';" />
+        <input type="button" id="cancelCallBtn" value="Cancel" onclick="location.href='call_log.php';" />
+        <input type="button" id="logCallBtn" value="Log Call" onclick="location.href='call_log.php';" />
       </div>
     </div>
     <div id="left2"></div>
