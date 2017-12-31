@@ -6,6 +6,39 @@
     <style type="text/css">
 	   @import url("stylesheet.css");
     </style>
+    <?php
+    include 'dblogin.php';
+
+    class Problem {
+      public $typeid;
+      public $desc;
+      public $notes;
+      public $hardwareid;
+      public $softwareid;
+      public $status;
+      public $solutionid = NULL;
+
+      public function __construct(
+        $typeid, $desc, $notes, $hardwareid, $softwareid, $status){
+          $this->typeid = $typeid;
+          $this->desc = $desc;
+          $this->notes = $notes;
+          $this->hardwareid = $hardwareid;
+          $this->softwareid = $softwareid;
+          $this->status = $status;
+        }
+    }
+
+    function populateFields(){
+      header('Content-Type: application/json');
+      $db = dblogin();
+      $sql = "SELECT DISTINCT type FROM hardware;";
+      $results = ($db->query($sql))->fetchAll();
+      foreach ($results as $type => $value) {
+        echo "<option>$value</option>;";
+      }
+    }
+     ?>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){ //on page open
@@ -18,6 +51,7 @@
       +("0" + date.getSeconds()).slice(-2);
       $("#dateInput").val(currentDate);
       $("#timeInput").val(currentTime);
+      $("#hardwareTypeList").html(populateFields());
     });
 
     $(document).on("click", "table tbody tr", function(e) {
@@ -238,6 +272,7 @@
           </div>
           <div>
             <h2>Hardware</h2>
+            <datalist id="hardwareTypeList"></datalist>
             <label class="sectionHeader">Serial No.:</label></br>
             <input type="text" /></br>
             <label class="sectionHeader">Type:</label></br>

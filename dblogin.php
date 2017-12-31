@@ -13,6 +13,7 @@ function dblogin(){
   if (PEAR::isError($db)) { //if error connecting
       die($db->getMessage());
   }
+  $db->setFetchMode(MDB2_FETCHMODE_ASSOC);
   return $db; //return database object
 }
 ?>
