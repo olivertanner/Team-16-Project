@@ -30,12 +30,11 @@
     }
 
     function populateFields(){
-      header('Content-Type: application/json');
       $db = dblogin();
-      $sql = "SELECT DISTINCT type FROM hardware;";
-      $results = ($db->query($sql))->fetchAll();
-      foreach ($results as $type => $value) {
-        echo "<option>$value</option>;";
+      $sql = "SELECT * FROM hardware;";
+      $result = mysqli_query($db,$sql) or die("Error");
+      while ($row = mysqli_fetch_array($result)) {
+       echo '<option>' . $row['id'] . ' ' . $row['type'] . ' ' . $row['serial_no'] . ' ' . $row['make'] . '</option>' .'<br />';
       }
     }
      ?>
@@ -276,7 +275,7 @@
             <label class="sectionHeader">Serial No.:</label></br>
             <input type="text" /></br>
             <label class="sectionHeader">Type:</label></br>
-            <input type="text" /></br>
+            <input type="text" list="hardwareTypeList"/></br>
             <label class="sectionHeader">Make:</label></br>
             <input type="text" /></br>
           </div>
