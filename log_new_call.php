@@ -90,8 +90,9 @@
     function addProblem(){
       var problemID = Math.floor(Math.random()*1000);
       var problemType = $("#addProblemTypeSel option:selected").text();
+      var problemPriority = $("#addProblemPrioritySel option:selected").text();
       var specialistName = $("#specialistTable tr.selected").length ? $("#specialistTable tr.selected td:first").next().text() : "None";
-      var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+specialistName+'</td></tr>';
+      var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+problemPriority+'</td><td>'+specialistName+'</td></tr>';
       $("#problemTable tbody").append(row);
       closeAddProblemDialog();
     }
@@ -215,7 +216,7 @@
         </div>
       </div>
 
-	    <div id="contentright">
+	    <div id="contentright2">
         <h2>PROBLEMS</h2></br>
         <input type="button" id="addProblemBtn" value="Add Problem" onclick="openAddProblemDialog();" />
         <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="$('#problemTable tr.selected').remove();" />
@@ -226,6 +227,7 @@
             <tr>
               <th>Problem ID</th>
               <th>Problem Type</th>
+              <th>Priority</th>
               <th>Specialist Assigned</th>
             </tr>
           </thead>
@@ -271,7 +273,7 @@
             <textarea id="addProblemTxtArea"></textarea>
           </div>
           <label class="sectionHeader">Problem Priority:</label></br>
-          <select id="addProblemPriority" class="problemPrioritySel">
+          <select id="addProblemPrioritySel" class="problemPrioritySel">
           	<option value='empty'></option>
             <option value='Networking'>Low</option>
             <option value='Printing'>Medium</option>

@@ -44,6 +44,9 @@ body {
   padding-top:5%;
 }
 
+
+
+
 #left2 {
   order: -1;
   flex: 0 0 10em;
@@ -227,11 +230,14 @@ float:left;
 
 }
 #contentright {
-display: inline-block;
-text-align:center;
-	width: 70%;
-		padding:15px;
+	display: inline-block;
+	text-align:left;
+	width: 75%;
+	padding:15px;
+	padding-top:10%;
+	max-height:500px;
 }
+
 #callLogButtons{
 text-align:center;
 }
@@ -280,6 +286,7 @@ h2{
 	text-align:left;
 	font-size:16px;
 	text-decoration: underline;
+	padding-top: 2%;
 }
 
 textarea{
@@ -328,7 +335,7 @@ width:100%;
 #problemTable{
 	text-align: center;
 	border-collapse: collapse;
-	width: 90%;
+	width: 50%;
 	margin:auto;
   overflow: scroll;
   max-height: 80%;

@@ -20,9 +20,9 @@
         $(".problemTypeSel").append(options);
 
         log.calls = [
-          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","High"],
+          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending","N/A"],
+          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
           ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
           ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
           ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
@@ -98,6 +98,7 @@
         $("#detailsProblemType").val(log.calls[row][4]).change();
         $("#detailsSpecialist").val(log.calls[row][5]);
         $("#detailsStatus").val(log.calls[row][6]);
+        $("#detailsPriority").val(log.calls[row][7]);
       }
 
       function clearProblemDetails(){
@@ -108,6 +109,7 @@
         $("#detailsProblemType").val("").change();
         $("#detailsSpecialist").val("");
         $("#detailsStatus").val("");
+        $("#detailsPriority").val("");
       }
 
       function cancelEdit(){
@@ -269,9 +271,9 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Problem Type</th>
-                <th>Priority</th>
                 <th>Specialist</th>
                 <th>Status</th>
+                <th>Priority</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -315,7 +317,7 @@
     </div>
 
     <div id="right">
-      <div style="margin:0 auto;">
+      <div id="contentright">
         <h2>PROBLEM DETAILS</h2>
         <div style="display: inline-block; text-align:left;">
           <label>Problem ID</label><br/>
@@ -353,6 +355,11 @@
         <div style="display: inline-block; text-align:left;">
           <label>Specialist</label><br/>
           <input type="text" id="detailsSpecialist" disabled/>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Problem Priority</label><br/>
+          <select id="detailsProblemPriority">
+          </select>
         </div><br/>
         <strong>Hardware</strong><br/>
         <div style="display: inline-block; text-align:left;">
