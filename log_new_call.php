@@ -252,6 +252,7 @@
         <div class="modal-content-left">
           <div>
             <div>
+            <div>
               <div style="display:inline-block;">
                 <label class="sectionHeader">Problem Type:</label></br>
                 <select id="addProblemTypeSel" class="problemTypeSel">
@@ -269,6 +270,16 @@
             <label class="sectionHeader">Problem Description:</label></br>
             <textarea id="addProblemTxtArea"></textarea>
           </div>
+          <label class="sectionHeader">Problem Priority:</label></br>
+          <select id="addProblemPriority" class="problemPrioritySel">
+          	<option value='empty'></option>
+            <option value='Networking'>Low</option>
+            <option value='Printing'>Medium</option>
+            <option value='Operating System'>High</option>
+        	</select>
+        </div>
+          
+          
           <div>
             <h2>Hardware</h2>
             <datalist id="hardwareTypeList"></datalist>
