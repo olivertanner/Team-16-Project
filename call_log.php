@@ -265,11 +265,7 @@
       }
     </script>
   </head>
-  <body>
-    <?php
-      echo $_SESSION["user"] . "<br>";
-      echo $_SESSION["userid"];
-     ?>
+  <body>  
     <div id="main">
       <header>
       <img  src="images/logo.png" width="110" height="90" id="logoLeft"/>
@@ -321,12 +317,9 @@
         </div><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Status</label><br/>
-          <select id="filterStatus">
-            <option value="All">All</option>
-            <option value="Assigned">Assigned</option>
-            <option value="Pending">Pending</option>
-            <option value="Closed">Closed</option>
-          </select>
+          <input type= "checkbox" name= "Assigned" value= "Assigned" id= "filterAssigned"> Assigned <br>
+          <input type= "checkbox" name= "Pending" value= "Pending" id= "filterPending"> Pending <br>
+          <input type= "checkbox" name= "Closed" value= "Closed" id= "filterClosed"> Closed <br>
         </div><br/>
         <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
       </div>
