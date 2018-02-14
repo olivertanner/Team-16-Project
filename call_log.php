@@ -20,9 +20,9 @@
         $(".problemTypeSel").append(options);
 
         log.calls = [
-          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","High"],
+          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending","N/A"],
+          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
           ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
           ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
           ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
@@ -98,6 +98,7 @@
         $("#detailsProblemType").val(log.calls[row][4]).change();
         $("#detailsSpecialist").val(log.calls[row][5]);
         $("#detailsStatus").val(log.calls[row][6]);
+        $("#detailsPriority").val(log.calls[row][7]);
       }
 
       function clearProblemDetails(){
@@ -108,6 +109,7 @@
         $("#detailsProblemType").val("").change();
         $("#detailsSpecialist").val("");
         $("#detailsStatus").val("");
+        $("#detailsPriority").val("");
       }
 
       function cancelEdit(){
@@ -127,7 +129,10 @@
         var onID = false,
           onName = false,
           onType = false,
-          onStatus = false;
+          onAssigned = false,
+          onPending = false,
+          onClosed = false;
+
         if ($.trim($("#filterID").val()).length > 0){
           onID = true;
         }
@@ -137,15 +142,24 @@
         if ($("#filterType option:selected").text() != ""){
           onType = true;
         }
-        if ($("#filterStatus option:selected").val() != "All"){
-          onStatus = true;
+        if ($("#filterAssigned").is(':checked')){
+          onAssigned = true;
+        }
+        if ($("#filterPending").is(':checked')){
+          onPending = true;
+        }
+        if ($("#filterClosed").is(':checked')){
+          onClosed = true;
         }
         var rows = "";
         for (var i = 0; i < log.calls.length; i++) {
           if ((onID ? $("#filterID").val() == log.calls[i][0] : true) &&
             (onName ? $("#filterName").val() == log.calls[i][1] : true) &&
             (onType ? $("#filterType option:selected").text() == log.calls[i][4] : true) &&
-            (onStatus ? $("#filterStatus option:selected").text() == log.calls[i][6] : true)){
+            ((onAssigned == onClosed && onAssigned == onPending && onAssigned != null) ? true :
+            (onAssigned ? "Assigned" == log.calls[i][6] : false) ||
+            (onPending ? "Pending" == log.calls[i][6] : false) ||
+            (onClosed ? "Closed" == log.calls[i][6] : false))){
               var row = "<tr>";
               for (var j = 0; j < log.calls[i].length; j++) {
                 if (j == 4){
@@ -162,7 +176,7 @@
               row += "</tr>";
               rows += row;
             }
-        }
+      }
         $("#callLogTable > tbody:last-child").append(rows);
       }
 
@@ -252,6 +266,10 @@
     </script>
   </head>
   <body>
+    <?php
+      echo $_SESSION["user"] . "<br>";
+      echo $_SESSION["userid"];
+     ?>
     <div id="main">
       <header>
       <img  src="images/logo.png" width="110" height="90" id="logoLeft"/>
@@ -271,6 +289,7 @@
                 <th>Problem Type</th>
                 <th>Specialist</th>
                 <th>Status</th>
+                <th>Priority</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -314,7 +333,7 @@
     </div>
 
     <div id="right">
-      <div style="margin:0 auto;">
+      <div id="contentright">
         <h2>PROBLEM DETAILS</h2>
         <div style="display: inline-block; text-align:left;">
           <label>Problem ID</label><br/>
@@ -352,6 +371,11 @@
         <div style="display: inline-block; text-align:left;">
           <label>Specialist</label><br/>
           <input type="text" id="detailsSpecialist" disabled/>
+        </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Problem Priority</label><br/>
+          <select id="detailsProblemPriority">
+          </select>
         </div><br/>
         <strong>Hardware</strong><br/>
         <div style="display: inline-block; text-align:left;">
@@ -392,6 +416,7 @@
           <div class="modal-content-left">
             <div>
               <div>
+              	<div>
                 <div style="display:inline-block;">
                   <label class="sectionHeader">Problem Type:</label></br>
                   <select id="assignSpecialistTypeSel" class="problemTypeSel">
@@ -403,6 +428,15 @@
               <label class="sectionHeader">Problem Description:</label></br>
               <textarea id="addProblemTxtArea" disabled></textarea><br/>
             </div>
+            <label class="sectionHeader">Problem Priority:</label></br>
+          <select id="addProblemPriority" class="problemPrioritySel">
+          	<option value='empty'></option>
+            <option value='Networking'>Low</option>
+            <option value='Printing'>Medium</option>
+            <option value='Operating System'>High</option>
+        	</select>
+        </div>
+
             <div>
               <h2>Hardware</h2>
               <label class="sectionHeader">Serial No.:</label></br>
