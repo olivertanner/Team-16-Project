@@ -78,7 +78,7 @@
           }
           if ($(this).hasClass("selected")) {
             showProblemDetails();
-            problemStatusCheck();
+            buttonRename();
           } else {
             clearProblemDetails();
           }
@@ -193,16 +193,7 @@
         }
       }
 
-      function problemStatusCheck(){
-
-        function functionChoice(){
-          if ($("#callLogTable tbody tr.selected td.statustd").html() == "Closed"){
-            openCloseProblemDialog();
-          } else{
-            openReopenProblemDialog();
-          }
-
-        }
+      function buttonRename(){
 
         if ($("#callLogTable tbody tr.selected td.statustd").html() == "Closed"){
             $("#closeProblemButton").val("Reopen Problem");
@@ -212,15 +203,15 @@
 
       }
 
-      function openCloseProblemDialog(){
+      function openProblemDialog(){
         if  ($("#callLogTable tbody tr.selected").length){
           if ($("#callLogTable tbody tr.selected td.statustd").html() != "Closed"){
             var probID = $("#callLogTable tbody tr.selected td:first").html();
             $("#closeProblemID").html("Problem ID: "+probID);
             openModalDialog($("#closeProblemModal"));
           }else {
-            $("#errorTitle").html("Cannot Close Problem");
-            $("#errorMsg").html("Problem is already closed.");
+            $("#errorTitle").html("Reopen Problem");
+            $("#errorMsg").html("Problem has been reopened.");
             openModalDialog($("#errorModal"));
           }
         } else {
@@ -229,12 +220,6 @@
           openModalDialog($("#errorModal"));
         }
       }
-/*THIS FUNCTION NEEDS REWRITTING FOR REOPEN PROBLEM*/
-      function openReopenProblemDialog(){
-          $("#errorTitle").html("Problem Reopened.");
-          $("#errorMsg").html("Problem Reopened.");
-          openModalDialog($("#errorModal"));
-        }
 
       function openViewSolutionDialog(){
         if  ($("#callLogTable tbody tr.selected").length){
@@ -306,7 +291,7 @@
       <div>
         <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
       </div>
     </div>
 
