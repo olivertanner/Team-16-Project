@@ -78,6 +78,7 @@
           }
           if ($(this).hasClass("selected")) {
             showProblemDetails();
+            buttonRename();
           } else {
             clearProblemDetails();
           }
@@ -206,15 +207,23 @@
         }
       }
 
-      function openCloseProblemDialog(){
+      function buttonRename(){
+        if ($("#callLogTable tbody tr.selected td.statustd").html() == "Closed"){
+            $("#closeProblemButton").val("Reopen Problem");
+      } else {
+        $("#closeProblemButton").val("Close Problem");
+          }
+      }
+
+      function openProblemDialog(){
         if  ($("#callLogTable tbody tr.selected").length){
           if ($("#callLogTable tbody tr.selected td.statustd").html() != "Closed"){
             var probID = $("#callLogTable tbody tr.selected td:first").html();
             $("#closeProblemID").html("Problem ID: "+probID);
             openModalDialog($("#closeProblemModal"));
           }else {
-            $("#errorTitle").html("Cannot Close Problem");
-            $("#errorMsg").html("Problem is already closed.");
+            $("#errorTitle").html("Reopen Problem");
+            $("#errorMsg").html("Problem has been reopened.");
             openModalDialog($("#errorModal"));
           }
         } else {
@@ -307,7 +316,7 @@
         <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
         <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
       </div>
     </div>
 
