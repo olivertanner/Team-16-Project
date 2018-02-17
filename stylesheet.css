@@ -699,9 +699,23 @@ width:100%;
     top: 36.4px;
     right: 0;
 }
+#adminBtn {
+    width: 80px;
+    height: 28px;
+    font-size: 15px;
+    background-color: #47566d;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin: 10px;
+    position: absolute;
+    right: 0;
+    top: 72.4px;
+}
 #logoutBtn {
-    width: 60px;
-    height: 20px;
+    width: 80px;
+    height: 28px;
     font-size: 15px;
     background-color: #47566d;
     color: white;

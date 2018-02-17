@@ -285,7 +285,7 @@
 
       function logout(){
         $.ajax({
-          url: 'logout.php',
+          url: 'logouthandler.php',
           data: {},
           type: 'GET',
           success: function(response){
@@ -364,6 +364,7 @@
       <div>
         <input type="button" id="logoutBtn" value="Log out" onclick="logout();"/>
         <input type="button" id="settingsBtn" value="Settings" onclick="window.location.href='change_password.php'"/>
+        <input type="button" id="adminBtn" value="Admin" onclick="window.location.href='admin.php'"/>
       </div>
     </div>
 
@@ -444,7 +445,7 @@
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
         </div></div></br></br>
-        <div id="modalbuttons">
+        <div>
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
         </div>
