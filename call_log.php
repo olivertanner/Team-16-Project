@@ -20,9 +20,9 @@
         $(".problemTypeSel").append(options);
 
         log.calls = [
-          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
+          ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","High"],
+          ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending","N/A"],
+          ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
           ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
           ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
           ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
@@ -78,6 +78,7 @@
           }
           if ($(this).hasClass("selected")) {
             showProblemDetails();
+            buttonRename();
           } else {
             clearProblemDetails();
           }
@@ -98,6 +99,7 @@
         $("#detailsProblemType").val(log.calls[row][4]).change();
         $("#detailsSpecialist").val(log.calls[row][5]);
         $("#detailsStatus").val(log.calls[row][6]);
+        $("#detailsPriority").val(log.calls[row][7]);
       }
 
       function clearProblemDetails(){
@@ -108,6 +110,7 @@
         $("#detailsProblemType").val("").change();
         $("#detailsSpecialist").val("");
         $("#detailsStatus").val("");
+        $("#detailsPriority").val("");
       }
 
       function cancelEdit(){
@@ -127,7 +130,10 @@
         var onID = false,
           onName = false,
           onType = false,
-          onStatus = false;
+          onAssigned = false,
+          onPending = false,
+          onClosed = false;
+
         if ($.trim($("#filterID").val()).length > 0){
           onID = true;
         }
@@ -137,15 +143,24 @@
         if ($("#filterType option:selected").text() != ""){
           onType = true;
         }
-        if ($("#filterStatus option:selected").val() != "All"){
-          onStatus = true;
+        if ($("#filterAssigned").is(':checked')){
+          onAssigned = true;
+        }
+        if ($("#filterPending").is(':checked')){
+          onPending = true;
+        }
+        if ($("#filterClosed").is(':checked')){
+          onClosed = true;
         }
         var rows = "";
         for (var i = 0; i < log.calls.length; i++) {
           if ((onID ? $("#filterID").val() == log.calls[i][0] : true) &&
             (onName ? $("#filterName").val() == log.calls[i][1] : true) &&
             (onType ? $("#filterType option:selected").text() == log.calls[i][4] : true) &&
-            (onStatus ? $("#filterStatus option:selected").text() == log.calls[i][6] : true)){
+            ((onAssigned == onClosed && onAssigned == onPending && onAssigned != null) ? true :
+            (onAssigned ? "Assigned" == log.calls[i][6] : false) ||
+            (onPending ? "Pending" == log.calls[i][6] : false) ||
+            (onClosed ? "Closed" == log.calls[i][6] : false))){
               var row = "<tr>";
               for (var j = 0; j < log.calls[i].length; j++) {
                 if (j == 4){
@@ -162,7 +177,7 @@
               row += "</tr>";
               rows += row;
             }
-        }
+      }
         $("#callLogTable > tbody:last-child").append(rows);
       }
 
@@ -192,15 +207,23 @@
         }
       }
 
-      function openCloseProblemDialog(){
+      function buttonRename(){
+        if ($("#callLogTable tbody tr.selected td.statustd").html() == "Closed"){
+            $("#closeProblemButton").val("Reopen Problem");
+      } else {
+        $("#closeProblemButton").val("Close Problem");
+          }
+      }
+
+      function openProblemDialog(){
         if  ($("#callLogTable tbody tr.selected").length){
           if ($("#callLogTable tbody tr.selected td.statustd").html() != "Closed"){
             var probID = $("#callLogTable tbody tr.selected td:first").html();
             $("#closeProblemID").html("Problem ID: "+probID);
             openModalDialog($("#closeProblemModal"));
           }else {
-            $("#errorTitle").html("Cannot Close Problem");
-            $("#errorMsg").html("Problem is already closed.");
+            $("#errorTitle").html("Reopen Problem");
+            $("#errorMsg").html("Problem has been reopened.");
             openModalDialog($("#errorModal"));
           }
         } else {
@@ -228,6 +251,10 @@
         }
       }
 
+      function openProblemDetailsDialog(){
+      	openModalDialog($("#problemDetailsModal"));
+      }
+
       function lookupSpecialists(){
         var problemType = $("#assignSpecialistTypeSel option:selected").text();
         if (problemType !== ""){
@@ -242,10 +269,13 @@
       function assignSpecialistToProblem(){
         var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
         var specialist = $("#specialistTable tr.selected td:first").next().html();
+        var priority = $( "#myselect addProblemPriority:selected" ).text();
         log.calls[row][5] = specialist;
         log.calls[row][6] = "Assigned";
+        log.calls[row][7] = priority;
         $("#callLogTable tr.selected td.specialisttd").text(specialist).change();
         $("#callLogTable tr.selected td.statustd").text("Assigned").change();
+        $("#callLogTable tr.selected td.prioritytd").text(priority).change();
         showProblemDetails();
         closeModalDialog($('#assignSpecialistModal'));
       }
@@ -258,8 +288,11 @@
       <img  src="images/banner.png" width="300" height="100" id="banner"/>
       <img  src="images/logo.png" width="110" height="90" id="logoRight"/>
       </header>
-      <input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.php';" /><br/>
-      <div style="position:relative;">
+      <div><input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.php';" /><br/>
+      </div>
+
+
+      <div style="position:relative;clear:both;">
         <div style="height:60%;overflow-y:scroll;border:1px solid black;">
           <table id="callLogTable" class="noselect">
             <thead>
@@ -269,9 +302,9 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Problem Type</th>
-                <th>Priority</th>
                 <th>Specialist</th>
                 <th>Status</th>
+                <th>Priority</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -280,43 +313,51 @@
       </div>
       <div>
         <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
+        <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
       </div>
     </div>
 
     <div id="left">
-      <div style="margin:auto;">
-        <h2>FILTER</h2>
-        <div style="display: inline-block; text-align:left;">
+      <div id="filter">
+        <h2>Filter</h2>
+        <div class="filterElement">
           <label>Problem ID</label><br/>
-          <input type="text" id="filterID"/>
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
+          <input type="text" id="filterID" class="filterText"/><br><br>
+        </div>
+        <div class="filterElement">
           <label>Caller Name</label><br/>
-          <input type="text" id="filterName"/>
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
+          <input type="text" id="filterName" class="filterText"/><br><br>
+        </div>
+        <div class="filterElement">
           <label>Problem Type</label><br/>
-          <select class="problemTypeSel" id="filterType">
-          </select>
-        </div><br/>
-        <div style="display: inline-block; text-align:left;">
+          <select class="problemTypeSel" id="filterType" class="filterText" style="width: 100%;"></select><br><br>
+        </div>
+        <div class="filterElement">
           <label>Status</label><br/>
-          <select id="filterStatus">
-            <option value="All">All</option>
-            <option value="Assigned">Assigned</option>
-            <option value="Pending">Pending</option>
-            <option value="Closed">Closed</option>
-          </select>
-        </div><br/>
+          <input type= "checkbox" name= "Assigned" value= "Assigned" id= "filterAssigned"> Assigned </input> <br>
+          <input type= "checkbox" name= "Pending" value= "Pending" id= "filterPending"> Pending </input> <br>
+          <input type= "checkbox" name= "Closed" value= "Closed" id= "filterClosed"> Closed </input> <br>
+        </div>
+        <div class="lastfilterElement">
         <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
-      </div>
+        </div>
+      </div></br>
     </div>
 
-    <div id="right">
-      <div style="margin:0 auto;">
+    <div id="right"> </div>
+
+    <div id="problemDetailsModal" class= "problemModal">
+      <div id="problemDetailsModalContent" class="problemModal-content">
+      <div>
+          <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#problemDetailsModal'));" />
+        </div>
         <h2>PROBLEM DETAILS</h2>
+
+        <div class="modal-content-wrapper">
+
+        <div class="problemModal-content-left">
         <div style="display: inline-block; text-align:left;">
           <label>Problem ID</label><br/>
           <input type="text" id="detailsID" disabled/>
@@ -354,6 +395,14 @@
           <label>Specialist</label><br/>
           <input type="text" id="detailsSpecialist" disabled/>
         </div><br/>
+        <div style="display: inline-block; text-align:left;">
+          <label>Problem Priority</label><br/>
+          <select id="detailsProblemPriority">
+          </select>
+          </div>
+        </div><br/>
+
+        <div class="problemModal-content-right">
         <strong>Hardware</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Serial No.</label><br/>
@@ -366,7 +415,7 @@
         <div style="display: inline-block; text-align:left;">
           <label>Model</label><br/>
           <input type="text" id="detailsModel" disabled/>
-        </div><br/>
+        </div><br/><br>
         <strong>Software</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Operating System</label><br/>
@@ -375,12 +424,13 @@
         <div style="display: inline-block; text-align:left;">
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
-        </div><br/>
+        </div></div></br></br>
         <div>
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
         </div>
       </div>
+    </div>
     </div>
 
     <div  id="assignSpecialistModal" class="modal">
@@ -413,7 +463,7 @@
             <option value='Operating System'>High</option>
         	</select>
         </div>
-            
+
             <div>
               <h2>Hardware</h2>
               <label class="sectionHeader">Serial No.:</label></br>

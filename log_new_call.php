@@ -115,7 +115,7 @@
             <div id="operator">
             <h2>HELPDESK OPERATOR</h2>
             <label class="sectionHeader">Operator Name:</label></br>
-            <input type="text" /></br>
+            <input type="text" id=operatorInput/></br>
             <label class="operatorLabels">Date:</label></br>
             <input type="text" id="dateInput" /></br>
             <label class="operatorLabels">Time:</label></br>
