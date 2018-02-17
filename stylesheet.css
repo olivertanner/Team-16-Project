@@ -699,6 +699,7 @@ width:100%;
     top: 36.4px;
     right: 0;
 }
+<<<<<<< HEAD
 #adminBtn {
     width: 80px;
     height: 28px;
@@ -716,6 +717,11 @@ width:100%;
 #logoutBtn {
     width: 80px;
     height: 28px;
+=======
+#logoutBtn {
+    width: 60px;
+    height: 20px;
+>>>>>>> 4e3a4f4512a30053649121d896a1c106bad9f545
     font-size: 15px;
     background-color: #47566d;
     color: white;
