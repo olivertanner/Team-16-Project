@@ -302,7 +302,6 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Problem Type</th>
-                <th>Priority</th>
                 <th>Specialist</th>
                 <th>Status</th>
                 <th>Priority</th>
@@ -349,8 +348,8 @@
 
     <div id="right"> </div>
 
-    <div id="problemDetailsModal" class= "modal">
-      <div id="problemDetailsModalContent" class="modal-content">
+    <div id="problemDetailsModal" class= "problemModal">
+      <div id="problemDetailsModalContent" class="problemModal-content">
       <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#problemDetailsModal'));" />
         </div>
@@ -358,7 +357,7 @@
 
         <div class="modal-content-wrapper">
 
-        <div class="modal-content-left">
+        <div class="problemModal-content-left">
         <div style="display: inline-block; text-align:left;">
           <label>Problem ID</label><br/>
           <input type="text" id="detailsID" disabled/>
@@ -403,7 +402,7 @@
           </div>
         </div><br/>
 
-        <div class="modal-content-right">
+        <div class="problemModal-content-right">
         <strong>Hardware</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Serial No.</label><br/>
@@ -416,7 +415,7 @@
         <div style="display: inline-block; text-align:left;">
           <label>Model</label><br/>
           <input type="text" id="detailsModel" disabled/>
-        </div><br/>
+        </div><br/><br>
         <strong>Software</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Operating System</label><br/>
@@ -425,7 +424,7 @@
         <div style="display: inline-block; text-align:left;">
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
-        </div></div><br/>
+        </div></div></br></br>
         <div>
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
