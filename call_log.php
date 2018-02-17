@@ -1,3 +1,6 @@
+<?php
+ session_start();
+ ?>
 <html>
   <head>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
@@ -279,6 +282,17 @@
         showProblemDetails();
         closeModalDialog($('#assignSpecialistModal'));
       }
+
+      function logout(){
+        $.ajax({
+          url: 'logout.php',
+          data: {},
+          type: 'GET',
+          success: function(response){
+            window.location.href = "/";
+          }
+        });
+      }
     </script>
   </head>
   <body>
@@ -346,7 +360,12 @@
       </div></br>
     </div>
 
-    <div id="right"> </div>
+    <div id="right">
+      <div>
+        <input type="button" id="logoutBtn" value="Log out" onclick="logout();"/>
+        <input type="button" id="settingsBtn" value="Settings" onclick="window.location.href='change_password.php'"/>
+      </div>
+    </div>
 
     <div id="problemDetailsModal" class= "problemModal">
       <div id="problemDetailsModalContent" class="problemModal-content">
