@@ -425,7 +425,7 @@
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
         </div></div></br></br>
-        <div>
+        <div id="modalbuttons">
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
         </div>
