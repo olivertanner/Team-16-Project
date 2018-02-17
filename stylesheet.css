@@ -685,6 +685,34 @@ width:100%;
 #callerTable thead tr:first-child:hover {
     background-color: #47566d;
 }
+#settingsBtn {
+    width: 80px;
+    height: 28px;
+    font-size: 15px;
+    background-color: #47566d;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin: 10px;
+    position: absolute;
+    top: 36.4px;
+    right: 0;
+}
+#logoutBtn {
+    width: 60px;
+    height: 20px;
+    font-size: 15px;
+    background-color: #47566d;
+    color: white;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 .noselect {
   -webkit-touch-callout: none;
     -webkit-user-select: none;
