@@ -285,7 +285,7 @@
 
       function logout(){
         $.ajax({
-          url: 'logout.php',
+          url: 'logouthandler.php',
           data: {},
           type: 'GET',
           success: function(response){
