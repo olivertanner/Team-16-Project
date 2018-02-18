@@ -23,7 +23,7 @@ $(document).ready(function(){
     var broad = $("#broadidselect option:selected").text();
     var broadtypeid = "";
     if (broad.length > 0){
-      var broadParts = broad.explode(' ');
+      var broadParts = broad.split(' ');
       broadtypeid = broadParts[0];
     }
     $.ajax({
