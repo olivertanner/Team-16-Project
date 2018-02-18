@@ -79,16 +79,16 @@ $(document).ready(function(){
 <body>
 
 <div id="main">
+    <div id=homeButtons>
+    </div>
     <div class="admin-page">
+    <input id="btn-home" type="button" value="Home" onclick="window.location.href='call_log.php'"/><br><br>
        <div class="form">
         <h1 id="admin-title">ADMIN</h1>
           <input id="btn-addProblemType" class="button" type="submit" value="Add New Problem Type" onclick="openAddNewProblemTypeModalDialog();"/><br><br>
           <input id="btn-addNewOperator" class="button" type="submit" value="Add New Operator" onclick="openAddOperatorModalDialog();"/><br><br>
           <input id="btn-addNewSpecialist" class="button" type="submit" value="Add New Specialist" onclick="openAddSpecialistModalDialog();"/><br><br>
         </div>
-    </div>
-    <div id=homeButtons>
-    <input id="btn-home" type="button" value="<- Home" onclick="window.location.href='call_log.php'"/><br><br>
     </div>
 </div>
 

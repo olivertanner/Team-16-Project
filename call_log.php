@@ -72,6 +72,20 @@
           rows += row;
         };
         $("#callLogTable > tbody:last-child").append(rows);
+        
+      var userid;
+      var user;
+      $.ajax({
+        url: "sessionhandler.php",
+        data: {},
+        type: "GET",
+        dataType: "json",
+        success: function(response){
+          user = response.username;
+          $("#username_details").val(user);
+        }
+      });
+
 
         $(document).on("click", "table tbody tr", function(e) {
           if($(this).hasClass("selected")){
@@ -257,7 +271,7 @@
       function openProblemDetailsDialog(){
       	openModalDialog($("#problemDetailsModal"));
       }
-      
+
       function openLinkSpecialityDialog(){
       	openModalDialog($("#linkSpecialityModal"));
       }
@@ -297,6 +311,8 @@
           }
         });
       }
+
+
     </script>
   </head>
   <body>
@@ -338,6 +354,14 @@
     </div>
 
     <div id="left">
+    
+    <div id="user_details">
+    <label>Username:</label>
+    <input type="text" id="username_details" class="detailsText"/><br>
+    <label>Name:</label>
+    <input type="text" id="name_details" class="detailsText"/><br>
+    </div>
+    
       <div id="filter">
         <h2>Filter</h2>
         <div class="filterElement">
@@ -369,7 +393,7 @@
         <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
         <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
         <input type="button" id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'"/>
-        <!--<input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>--!>
+        <!--<input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>-->
 
       </div>
     </div>
@@ -451,9 +475,9 @@
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
         </div></div></br></br>
-        <div>
-          <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
-          <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
+        <div id="problemDetailsButtons">
+          <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" />
+          <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" />
         </div>
       </div>
     </div>
@@ -590,7 +614,7 @@
           </div>
       </div>
     </div>
-    
+
     <div id="linkSpecialityModal" class="modal">
       <div id="linkSpecialityModal" class="modal-content">
         <div>
@@ -605,13 +629,13 @@
           		<option value='empty'></option>
         	</select>
         	<input type="button" class="btnAddSpeciality" value="Add"><br><br>
-        	
+
 
   			<label class="" for="textinput">Current Specialities:</label><br><br>
   			<textarea id="currentSpecialitiesTxtArea" rows="4" cols="50"></textarea>
 		</div>
 
-  		
+
 		<div class="typeButtons">
 			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#linkSpecialityModal'));">
 			<input type="button" class="btnAddProblemType" value="Save">
@@ -619,6 +643,6 @@
 
       </div>
     </div>
-    
+
   </body>
 </html>

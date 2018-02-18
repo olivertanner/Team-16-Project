@@ -7,6 +7,7 @@ body {
 #main{
 	width: 360px;
 	margin: auto;
+	text-align: left;
 }
 
 #admin-title {
@@ -18,13 +19,12 @@ body {
 
 .admin-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 30% 0 0;
   margin: auto;
 }
 .form {
   position: relative;
   background: #FFFFFF;
-  margin: 0 auto 100px;
   padding: 45px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -128,21 +128,35 @@ body {
 }
 
 #operatorNameInput{
-	text-align:right;
 }
 
 #jobTitleInput{
 	background-color:#d6d6d6;
-	text-align:right;
 }
 
 #deptInput{
 	background-color:#d6d6d6;
-	text-align:right;
+
 }
 
 .typeButtons{
 	text-align:center;
 	padding-top:5%;
 }
+
+#btn-home{
+	background-color: #FFFFFF;
+    border: none;
+    color: #778899;
+    padding: 8px 13px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top:3%;
+    border-radius: 2px;
+}
+#btn-home:hover{
+	background-color: #efefef;
+}
+
 

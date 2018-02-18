@@ -72,6 +72,20 @@
           rows += row;
         };
         $("#callLogTable > tbody:last-child").append(rows);
+        
+      var userid;
+      var user;
+      $.ajax({
+        url: "sessionhandler.php",
+        data: {},
+        type: "GET",
+        dataType: "json",
+        success: function(response){
+          user = response.username;
+          $("#username_details").val(user);
+        }
+      });
+        
 
         $(document).on("click", "table tbody tr", function(e) {
           if($(this).hasClass("selected")){
@@ -92,6 +106,8 @@
           $("#saveEditBtn").prop("disabled", false);
         });
       });
+      
+      
 
       function showProblemDetails(){
         var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
@@ -335,6 +351,14 @@
     </div>
 
     <div id="left">
+    
+    <div id="user_details">
+    <label>Username:</label>
+    <input type="text" id="username_details" class="detailsText"/><br>
+    <label>Name:</label>
+    <input type="text" id="name_details" class="detailsText"/><br>
+    </div>
+    
       <div id="filter">
         <h2>Filter</h2>
         <div class="filterElement">
