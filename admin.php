@@ -23,7 +23,7 @@ $(document).ready(function(){
     var broad = $("#broadidselect option:selected").text();
     var broadtypeid = "";
     if (broad.length > 0){
-      var broadParts = broad.explode(' ');
+      var broadParts = broad.split(' ');
       broadtypeid = broadParts[0];
     }
     $.ajax({
@@ -39,6 +39,33 @@ $(document).ready(function(){
           location.reload();
         } else {
           alert(response.msg);
+        }
+      }
+    });
+  }
+
+  function addOperatorOrSpecialist(option){
+    var username, name;
+    if (option == 0){
+      username = $("#operatorUsernameInput").val();
+      name = $("#operatorNameInput").val();
+    } else {
+      username = $("#specialistUsernameInput").val();
+      name = $("#specialistNameInput").val();
+    }
+    $.ajax({
+      url: 'add_operator_or_specialist.php',
+      data: {
+        option: option,
+        name: name,
+        username: username
+      },
+      type: 'POST',
+      success: function(response){
+        if (response.success){
+          alert("Account created\nUsername: "+response.username+"\nPassword: "+response.password);
+        } else {
+          alert("Error: "+response.msg);
         }
       }
     });
@@ -72,8 +99,6 @@ $(document).ready(function(){
             div.innerHTML += "</select>";
             div.innerHTML += "</br>";
         }
-
-
     </script>
   </head>
 <body>
@@ -164,7 +189,7 @@ $(document).ready(function(){
 
 		<div class="typeButtons">
 			<input type="button" value="Cancel" onClick="closeModalDialog($('#addOperatorModal'));">
-			<input type="button" value="Add Operator" onClick="addTextArea();">
+			<input type="button" value="Add Operator" onClick="addOperatorOrSpecialist(0);">
 		</div>
 		</form>
       </div>
@@ -201,7 +226,7 @@ $(document).ready(function(){
 
 		<div class="typeButtons">
 			<input type="button" value="Cancel" onClick="closeModalDialog($('#addSpecialistModal'));">
-			<input type="button" value="Add Specialist" onClick="addTextArea();">
+			<input type="button" value="Add Specialist" onClick="addOperatorOrSpecialist(1);">
 		</div>
 		</form>
 
