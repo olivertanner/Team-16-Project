@@ -1,10 +1,13 @@
+<?php
+ session_start();
+ ?>
 <html>
   <head>
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Call Log</title>
     <style type="text/css">
-	   @import url("stylesheet.css");
+	   @import url("problem_log.css");
     </style>
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
@@ -78,6 +81,7 @@
           }
           if ($(this).hasClass("selected")) {
             showProblemDetails();
+            buttonRename();
           } else {
             clearProblemDetails();
           }
@@ -129,7 +133,10 @@
         var onID = false,
           onName = false,
           onType = false,
-          onStatus = false;
+          onAssigned = false,
+          onPending = false,
+          onClosed = false;
+
         if ($.trim($("#filterID").val()).length > 0){
           onID = true;
         }
@@ -139,15 +146,24 @@
         if ($("#filterType option:selected").text() != ""){
           onType = true;
         }
-        if ($("#filterStatus option:selected").val() != "All"){
-          onStatus = true;
+        if ($("#filterAssigned").is(':checked')){
+          onAssigned = true;
+        }
+        if ($("#filterPending").is(':checked')){
+          onPending = true;
+        }
+        if ($("#filterClosed").is(':checked')){
+          onClosed = true;
         }
         var rows = "";
         for (var i = 0; i < log.calls.length; i++) {
           if ((onID ? $("#filterID").val() == log.calls[i][0] : true) &&
             (onName ? $("#filterName").val() == log.calls[i][1] : true) &&
             (onType ? $("#filterType option:selected").text() == log.calls[i][4] : true) &&
-            (onStatus ? $("#filterStatus option:selected").text() == log.calls[i][6] : true)){
+            ((onAssigned == onClosed && onAssigned == onPending && onAssigned != null) ? true :
+            (onAssigned ? "Assigned" == log.calls[i][6] : false) ||
+            (onPending ? "Pending" == log.calls[i][6] : false) ||
+            (onClosed ? "Closed" == log.calls[i][6] : false))){
               var row = "<tr>";
               for (var j = 0; j < log.calls[i].length; j++) {
                 if (j == 4){
@@ -156,9 +172,7 @@
                   row += "<td class='specialisttd'>"+log.calls[i][j]+"</td>";
                 } else if (j == 6) {
                   row += "<td class='statustd'>"+log.calls[i][j]+"</td>";
-                } else if (j == 7) {
-                  row += "<td class='prioritytd'>"+log.calls[i][j]+"</td>";
-                }else {
+                } else {
                   row += "<td>"+log.calls[i][j]+"</td>";
                 }
 
@@ -166,7 +180,7 @@
               row += "</tr>";
               rows += row;
             }
-        }
+      }
         $("#callLogTable > tbody:last-child").append(rows);
       }
 
@@ -196,15 +210,23 @@
         }
       }
 
-      function openCloseProblemDialog(){
+      function buttonRename(){
+        if ($("#callLogTable tbody tr.selected td.statustd").html() == "Closed"){
+            $("#closeProblemButton").val("Reopen Problem");
+      } else {
+        $("#closeProblemButton").val("Close Problem");
+          }
+      }
+
+      function openProblemDialog(){
         if  ($("#callLogTable tbody tr.selected").length){
           if ($("#callLogTable tbody tr.selected td.statustd").html() != "Closed"){
             var probID = $("#callLogTable tbody tr.selected td:first").html();
             $("#closeProblemID").html("Problem ID: "+probID);
             openModalDialog($("#closeProblemModal"));
           }else {
-            $("#errorTitle").html("Cannot Close Problem");
-            $("#errorMsg").html("Problem is already closed.");
+            $("#errorTitle").html("Reopen Problem");
+            $("#errorMsg").html("Problem has been reopened.");
             openModalDialog($("#errorModal"));
           }
         } else {
@@ -231,9 +253,13 @@
           openModalDialog($("#errorModal"));
         }
       }
-      
+
       function openProblemDetailsDialog(){
       	openModalDialog($("#problemDetailsModal"));
+      }
+      
+      function openLinkSpecialityDialog(){
+      	openModalDialog($("#linkSpecialityModal"));
       }
 
       function lookupSpecialists(){
@@ -260,6 +286,17 @@
         showProblemDetails();
         closeModalDialog($('#assignSpecialistModal'));
       }
+
+      function logout(){
+        $.ajax({
+          url: 'logouthandler.php',
+          data: {},
+          type: 'GET',
+          success: function(response){
+            window.location.href = "/";
+          }
+        });
+      }
     </script>
   </head>
   <body>
@@ -269,41 +306,10 @@
       <img  src="images/banner.png" width="300" height="100" id="banner"/>
       <img  src="images/logo.png" width="110" height="90" id="logoRight"/>
       </header>
-      <div><input id= "logCallButton" type="button" class="table" value="Log Call" onclick="location.href='log_new_call.php';" /><br/>
-      </div>
-      
-      <div id="filter">
-        <h2>FILTER</h2>
-        <div class="filterElement">
-          <label>Problem ID</label><br/>
-          <input type="text" id="filterID" class="filterText"/>
-        </div>
-        <div class="filterElement">
-          <label>Caller Name</label><br/>
-          <input type="text" id="filterName" class="filterText"/>
-        </div>
-        <div class="filterElement">
-          <label>Problem Type</label><br/>
-          <select class="problemTypeSel" id="filterType class="filterText"">
-          </select>
-        </div>
-        <div class="filterElement">
-          <label>Status</label><br/>
-          <select id="filterStatus" class="filterText">
-            <option value="All">All</option>
-            <option value="Assigned">Assigned</option>
-            <option value="Pending">Pending</option>
-            <option value="Closed">Closed</option>
-          </select>
-        </div>
-        <div class="lastfilterElement">
-        <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
-        </div>
-      </div></br>
-      
-      
-      <div style="position:relative;">
-        <div style="height:45%;overflow-y:scroll;border:1px solid black;">
+
+
+      <div style="position:relative;clear:both;">
+        <div style="height:60%;overflow-y:scroll;border:1px solid black;">
           <table id="callLogTable" class="noselect">
             <thead>
               <tr>
@@ -322,29 +328,58 @@
         </div>
       </div>
       <div>
-        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
         <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openCloseProblemDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
       </div>
     </div>
 
     <div id="left">
-      
+      <div id="filter">
+        <h2>Filter</h2>
+        <div class="filterElement">
+          <label>Problem ID</label><br/>
+          <input type="text" id="filterID" class="filterText"/><br><br>
+        </div>
+        <div class="filterElement">
+          <label>Caller Name</label><br/>
+          <input type="text" id="filterName" class="filterText"/><br><br>
+        </div>
+        <div class="filterElement">
+          <label>Problem Type</label><br/>
+          <select class="problemTypeSel" id="filterType" class="filterText" style="width: 100%;"></select><br><br>
+        </div>
+        <div class="filterElement">
+          <label>Status</label><br/>
+          <input type= "checkbox" name= "Assigned" value= "Assigned" id= "filterAssigned"> Assigned </input> <br>
+          <input type= "checkbox" name= "Pending" value= "Pending" id= "filterPending"> Pending </input> <br>
+          <input type= "checkbox" name= "Closed" value= "Closed" id= "filterClosed"> Closed </input> <br>
+        </div>
+        <div class="lastfilterElement">
+        <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
+        </div>
+      </div></br>
     </div>
-    
-    <div id="right"> </div>
 
-    <div id="problemDetailsModal" class= "modal">
-      <div id="problemDetailsModalContent" class="modal-content">
+    <div id="right">
+      <div>
+        <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
+        <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
+        <input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
+
+      </div>
+    </div>
+
+    <div id="problemDetailsModal" class= "problemModal">
+      <div id="problemDetailsModalContent" class="problemModal-content">
       <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#problemDetailsModal'));" />
         </div>
         <h2>PROBLEM DETAILS</h2>
-        
+
         <div class="modal-content-wrapper">
-        
-        <div class="modal-content-left">
+
+        <div class="problemModal-content-left">
         <div style="display: inline-block; text-align:left;">
           <label>Problem ID</label><br/>
           <input type="text" id="detailsID" disabled/>
@@ -388,8 +423,8 @@
           </select>
           </div>
         </div><br/>
-        
-        <div class="modal-content-right">
+
+        <div class="problemModal-content-right">
         <strong>Hardware</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Serial No.</label><br/>
@@ -402,7 +437,7 @@
         <div style="display: inline-block; text-align:left;">
           <label>Model</label><br/>
           <input type="text" id="detailsModel" disabled/>
-        </div><br/>
+        </div><br/><br>
         <strong>Software</strong><br/>
         <div style="display: inline-block; text-align:left;">
           <label>Operating System</label><br/>
@@ -411,7 +446,7 @@
         <div style="display: inline-block; text-align:left;">
           <label>Software</label><br/>
           <input type="text" id="detailsSoftware" disabled/>
-        </div></div><br/>
+        </div></div></br></br>
         <div>
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" disabled/>
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" disabled/>
@@ -450,7 +485,7 @@
             <option value='Operating System'>High</option>
         	</select>
         </div>
-            
+
             <div>
               <h2>Hardware</h2>
               <label class="sectionHeader">Serial No.:</label></br>
@@ -551,5 +586,35 @@
           </div>
       </div>
     </div>
+    
+    <div id="linkSpecialityModal" class="modal">
+      <div id="linkSpecialityModal" class="modal-content">
+        <div>
+          <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#linkSpecialityModal'));" />
+        </div>
+        <h1 style="width:100%;">Add Speciality</h1>
+
+
+		<div class="typeInput">
+  			<label class="" for="textinput">Speciality:</label>
+			<select id="addSpeciality" class="problemPrioritySel">
+          		<option value='empty'></option>
+        	</select>
+        	<input type="button" class="btnAddSpeciality" value="Add"><br><br>
+        	
+
+  			<label class="" for="textinput">Current Specialities:</label><br><br>
+  			<textarea id="currentSpecialitiesTxtArea" rows="4" cols="50"></textarea>
+		</div>
+
+  		
+		<div class="typeButtons">
+			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#linkSpecialityModal'));">
+			<input type="button" class="btnAddProblemType" value="Save">
+		</div>
+
+      </div>
+    </div>
+    
   </body>
 </html>

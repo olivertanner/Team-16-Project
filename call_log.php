@@ -366,10 +366,10 @@
 
     <div id="right">
       <div>
-        <input type="button" id="logoutBtn" value="Log out" onclick="logout();"/>
-        <input type="button" id="settingsBtn" value="Password" onclick="window.location.href='change_password.php'"/>
-        <input type="button" id="adminBtn" value="Admin" onclick="window.location.href='admin.php'"/>
-        <input type="button" id="specialitiesBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
+        <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
+        <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
+        <input type="button" id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'"/>
+        <input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
 
       </div>
     </div>
@@ -614,7 +614,7 @@
   		
 		<div class="typeButtons">
 			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#linkSpecialityModal'));">
-			<input type="button" class="btnAddProblemType" value="Add Problem Type">
+			<input type="button" class="btnAddProblemType" value="Save">
 		</div>
 
       </div>
