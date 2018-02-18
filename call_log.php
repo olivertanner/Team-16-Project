@@ -257,6 +257,10 @@
       function openProblemDetailsDialog(){
       	openModalDialog($("#problemDetailsModal"));
       }
+      
+      function openLinkSpecialityDialog(){
+      	openModalDialog($("#linkSpecialityModal"));
+      }
 
       function lookupSpecialists(){
         var problemType = $("#assignSpecialistTypeSel option:selected").text();
@@ -285,10 +289,6 @@
 
       function logout(){
         $.ajax({
-<<<<<<< HEAD
-=======
-
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
           url: 'logouthandler.php',
           data: {},
           type: 'GET',
@@ -367,8 +367,9 @@
     <div id="right">
       <div>
         <input type="button" id="logoutBtn" value="Log out" onclick="logout();"/>
-        <input type="button" id="settingsBtn" value="Settings" onclick="window.location.href='change_password.php'"/>
+        <input type="button" id="settingsBtn" value="Password" onclick="window.location.href='change_password.php'"/>
         <input type="button" id="adminBtn" value="Admin" onclick="window.location.href='admin.php'"/>
+        <input type="button" id="specialitiesBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
 
       </div>
     </div>
@@ -589,5 +590,35 @@
           </div>
       </div>
     </div>
+    
+    <div id="linkSpecialityModal" class="modal">
+      <div id="linkSpecialityModal" class="modal-content">
+        <div>
+          <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#linkSpecialityModal'));" />
+        </div>
+        <h1 style="width:100%;">Add Speciality</h1>
+
+
+		<div class="typeInput">
+  			<label class="" for="textinput">Speciality:</label>
+			<select id="addSpeciality" class="problemPrioritySel">
+          		<option value='empty'></option>
+        	</select>
+        	<input type="button" class="btnAddSpeciality" value="Add"><br><br>
+        	
+
+  			<label class="" for="textinput">Current Specialities:</label><br><br>
+  			<textarea id="currentSpecialitiesTxtArea" rows="4" cols="50"></textarea>
+		</div>
+
+  		
+		<div class="typeButtons">
+			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#linkSpecialityModal'));">
+			<input type="button" class="btnAddProblemType" value="Add Problem Type">
+		</div>
+
+      </div>
+    </div>
+    
   </body>
 </html>
