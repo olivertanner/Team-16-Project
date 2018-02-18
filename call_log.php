@@ -369,7 +369,7 @@
         <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
         <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
         <input type="button" id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'"/>
-        <input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
+        <!--<input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>--!>
 
       </div>
     </div>
