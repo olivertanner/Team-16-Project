@@ -2,13 +2,47 @@
   <head>
     <title>Admin</title>
     <link rel="stylesheet" href="admin.css">
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
     <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
+
+$(document).ready(function(){
+    $.ajax({
+      url: 'get_problem_types.php',
+      data: {},
+      type: 'GET',
+      success: function(response){
+        $("#broadidselect").append(response);
+      }
+    });
+
+});
+
+  function addProblemType(){
+    var ptname = $("#in-pt-name").val();
+    var broad = $("#broadidselect option:selected").text();
+    var broadtypeid = "";
+    if (broad.length > 0){
+      var broadParts = broad.explode(' ');
+      broadtypeid = broadParts[0];
+    }
+    $.ajax({
+      url: 'add_problem_types.php',
+      data: {
+        name: ptname,
+        broadid: broadtypeid
+      },
+      type: 'POST',
+      success: function(response){
+        if (response.success){
+          alert("New problem type added");
+          location.reload();
+        } else {
+          alert(response.msg);
+        }
+      }
+    });
+  }
 
 	function openModalDialog(dialog){
         dialog.attr("style","display:inline-block");
@@ -18,19 +52,11 @@
         dialog.removeAttr("style");
         dialog.attr("style","display:none;")
       }
-<<<<<<< HEAD
 
 	function openAddNewProblemTypeModalDialog(){
       	openModalDialog($("#addProblemTypeModal"));
       }
 
-=======
-    
-	function openAddNewProblemTypeModalDialog(){
-      	openModalDialog($("#addProblemTypeModal"));
-      }
-      
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
 	function openAddOperatorModalDialog(){
       	openModalDialog($("#addOperatorModal"));
       }
@@ -38,11 +64,7 @@
 	function openAddSpecialistModalDialog(){
       	openModalDialog($("#addSpecialistModal"));
       }
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
     function addTextArea(){
             var div = document.getElementById('spec.add');
             div.innerHTML += "<label class='col-md-4 control-label' for='selectbasic'>Select Specialist </label>";
@@ -68,15 +90,9 @@
     <div id=homeButtons>
     <input id="btn-home" type="button" value="<- Home" onclick="window.location.href='call_log.php'"/><br><br>
     </div>
-<<<<<<< HEAD
 </div>
 
 
-=======
-</div> 
-
-    
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
 
 <div id="addProblemTypeModal" class="modal">
       <div id="addProblemTypeModal" class="modal-content">
@@ -91,53 +107,17 @@
 
 		<!--Text input-->
 		<div class="typeInput">
-<<<<<<< HEAD
   			<label class="col-md-4 control-label" for="textinput">Problem Type Name:</label>
-  			<input id="in-pt-name" name="textinput" type="text" placeholder="" class="form-control input-md" /> 
-=======
-  			<label class="col-md-4 control-label" for="textinput">Problem Type Keyword (e.g. Keyboard):</label>  
-  			<input id="textinput" name="textinput" type="text" placeholder="Keyboard" class="form-control input-md"> 
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
+  			<input id="in-pt-name" name="textinput" type="text" placeholder="" class="form-control input-md" />
 		</div>
-
-		<!--Specialist Selection-->
-		<div class="specSelect">
-
-  			<label>Select Specialist:</label>
-
-    			<select>
-     			 	<option>Specialist 1</option>
-      				<option>Specialist 2</option>
-      				<option>Specialist 3</option>
-      				<option>Specialist 4</option>
-      				<option>Specialist 5</option>
-      				<option>Specialist 6</option>
-      				<option>Specialist 7</option>
-    			</select>
-<<<<<<< HEAD
-
-=======
-    			
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
-    		<input class="addButt" type="button" value="Add Specialist" onClick="addTextArea();" style="display:inline-block;">
-
-		<div id="spec.add">
-  		</div>
-
-  		</div>
 
   		<div class="broadSelect">
 
   			<label>Select Broad Problem Type:</label>
 
-    			<select>
-      				<option>Type 1</option>
-      				<option>Type 2</option>
-      				<option>Type 3</option>
-      				<option>Type 4</option>
-      				<option>Type 5</option>
-      				<option>Type 6</option>
-      				<option>Type 7</option>
+    			<select id="broadidselect">
+      				<option></option>
+
     			</select>
 
 
@@ -145,17 +125,11 @@
 
 		<div class="typeButtons">
 			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#addProblemTypeModal'));">
-			<input type="button" class="btnAddProblemType" value="Add Problem Type">
+			<input type="button" class="btnAddProblemType" value="Add Problem Type" onclick="addProblemType();">
 		</div>
-<<<<<<< HEAD
 
 		</form>
 
-=======
-		
-		</form>
-        
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
       </div>
     </div>
 
@@ -168,7 +142,6 @@
 		<form method="post">
 
 		<div class="typeInput">
-<<<<<<< HEAD
   			<label class="col-md-4 control-label" for="textinput">Enter New Operator's Name:</label>
   			<input id="operatorNameInput" name="textinput" type="text" class="form-control input-md">
 		</div>
@@ -187,26 +160,6 @@
   		<div class="typeInput">
   			<label class="col-md-4 control-label" for="textinput">Create Operator Username:</label>
   			<input id="operatorUsernameInput" name="textinput" type="text" class="form-control input-md">
-=======
-  			<label class="col-md-4 control-label" for="textinput">Enter New Operator's Name:</label>  
-  			<input id="operatorNameInput" name="textinput" type="text" class="form-control input-md"> 
-		</div>
-
-		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Job Title:</label>  
-  			<input id="operatorJobTitleInput" name="textinput" type="text" class="form-control input-md" value="Operator" disabled> 
-		</div>
-		
-		
-  		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Department:</label>  
-  			<input id="operatorDeptInput" name="textinput" type="text" class="form-control input-md" value="Helpdesk" disabled> 
-		</div>
-		
-  		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Create Operator Username:</label>  
-  			<input id="operatorUsernameInput" name="textinput" type="text" class="form-control input-md"> 
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
 		</div>
 
 		<div class="typeButtons">
@@ -226,7 +179,6 @@
 		<form method="post">
 
 		<div class="typeInput">
-<<<<<<< HEAD
   			<label class="col-md-4 control-label" for="textinput">Enter New Specialist's Name:</label>
   			<input id="specialistNameInput" name="textinput" type="text" class="form-control input-md">
 		</div>
@@ -245,26 +197,6 @@
   		<div class="typeInput">
   			<label class="col-md-4 control-label" for="textinput">Create Specialist Username:</label>
   			<input id="specialistUsernameInput" name="textinput" type="text" class="form-control input-md">
-=======
-  			<label class="col-md-4 control-label" for="textinput">Enter New Specialist's Name:</label>  
-  			<input id="specialistNameInput" name="textinput" type="text" class="form-control input-md"> 
-		</div>
-
-		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Job Title:</label>  
-  			<input id="specialistJobTitleInput" name="textinput" type="text" class="form-control input-md" value="Specialist" disabled> 
-		</div>
-		
-		
-  		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Department:</label>  
-  			<input id="specialistDeptInput" name="textinput" type="text" class="form-control input-md" value="Helpdesk" disabled> 
-		</div>
-		
-  		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Create Specialist Username:</label>  
-  			<input id="specialistUsernameInput" name="textinput" type="text" class="form-control input-md"> 
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
 		</div>
 
 		<div class="typeButtons">
@@ -275,10 +207,6 @@
 
       </div>
     </div>
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
 </body>
 </html>
