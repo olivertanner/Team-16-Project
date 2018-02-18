@@ -285,6 +285,10 @@
 
       function logout(){
         $.ajax({
+<<<<<<< HEAD
+=======
+
+>>>>>>> 596ad87a0061110215d96217a2b0c0bce5ce33ff
           url: 'logouthandler.php',
           data: {},
           type: 'GET',
@@ -364,6 +368,8 @@
       <div>
         <input type="button" id="logoutBtn" value="Log out" onclick="logout();"/>
         <input type="button" id="settingsBtn" value="Settings" onclick="window.location.href='change_password.php'"/>
+        <input type="button" id="adminBtn" value="Admin" onclick="window.location.href='admin.php'"/>
+
       </div>
     </div>
 
