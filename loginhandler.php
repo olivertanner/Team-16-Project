@@ -7,13 +7,13 @@
 
     include 'checkpassword.php';
 
-
-	  if (checkPassword($username, $password)){
-        $staffid = $row["staff_id"];
+    $result = json_decode(checkPassword($username, $password));
+	  if ($result->success){
+        $userid = $result->userid;
         $db = dblogin();
-        $sqls = "SELECT * FROM `specialists` WHERE staff_id = '$staffid';";
-        $sqlo = "SELECT * FROM `operators` WHERE staff_id = '$staffid';";
-
+        $sqls = "SELECT * FROM `specialists` WHERE staff_id = '$userid';";
+        $sqlo = "SELECT * FROM `operators` WHERE staff_id = '$userid';";
+        $staffsql = "SELECT * FROM `staff` WHERE id = '$userid';";
         if ($db->query($sqls)){
           $_SESSION["role"] = "specialist";
         } elseif ($db->query($sqlo)){
@@ -26,9 +26,17 @@
           $db->close();
       		exit;
         }
+        $staffresult = $db->query($staffsql);
+        if ($staffresult->num_rows > 0) {
+    	    // output data of each row
+    	    while($row = $staffresult->fetch_assoc()) {
+            $name = $row["name"];
+            $_SESSION["name"] = $name;
+          }
+        }
         $db->close();
         $_SESSION["username"] = $username;
-        $_SESSION["userid"] = $staffid;
+        $_SESSION["userid"] = $userid;
         echo json_encode(array(
           'success' => true
         ));
