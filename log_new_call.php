@@ -277,9 +277,9 @@ session_start();
             <table id="specialistTable">
               <thead>
                 <tr>
-                  <th>Type</th>
+                  <th>Specialist ID</th>
                   <th>Name</th>
-                  <th>Count</th>
+                  <th>Related Speciality</th>
                   <th>Workload</th>
                 </tr>
               </thead>
