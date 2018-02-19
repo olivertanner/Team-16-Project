@@ -1,9 +1,11 @@
+<!--PHP code to add calls and problems to the database
+Contributor: Ollie Tanner-->
 <?php
   session_start();
   header('Content-Type: application/json');
   include 'call.php';
   include 'problem.php';
-  include 'dblogin.php';
+  include 'add_problem.php';
 
   $callerid = $_POST["callerid"];
   $operatorid = $_POST["operatorid"];
@@ -16,7 +18,13 @@
   if ($result === TRUE){
     $callid = $db->insert_id;
     foreach ($problems as $problem) {
-      $problemid = addProblem($problem);
+      echo json_encode(array(
+        'msg'=> $problem
+      ));
+      $db->close();
+      exit;
+      $newproblemid = addNewProblem();
+
       if ($problemid != NULL){
         addProblemCallLink($callid, $problemid);
       }

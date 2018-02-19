@@ -1,3 +1,5 @@
+<!-- PHP Class to store problem data
+Contributor: Ollie Tanner-->
 <?php
   class Problem {
     public $id;
@@ -28,9 +30,8 @@
       $this->priority = $priority;
       $this->solutionid = $solutionid;
     }
-}
+
     function addProblem(){
-      include 'dblogin.php';
       $db = dblogin();
 
       $typeid = $this->typeid;
@@ -43,8 +44,8 @@
       $specialistid = $this->specialistid;
       $priority = $this->priority;
 
-  	  $sql = "INSERT INTO `problems` VALUES (NULL, '$typeid', '$desc', '$notes', NOW(), '$hardwareid', $osid, '$softwareid', '$status', '$specialistid', '$priority', NULL);";
-      $sqlnospec = "INSERT INTO `problems` VALUES (NULL, '$typeid', '$desc', '$notes', NOW(), '$hardwareid', $osid, '$softwareid', '$status', NULL, '$priority', NULL);";
+  	  $sql = "INSERT INTO `problems` VALUES (NULL, '$typeid', '$desc', '$notes', NOW(), '$hardwareid', '$osid', '$softwareid', '$status', '$specialistid', '$priority', NULL);";
+      $sqlnospec = "INSERT INTO `problems` VALUES (NULL, '$typeid', '$desc', '$notes', NOW(), '$hardwareid', '$osid', '$softwareid', '$status', NULL, '$priority', NULL);";
       if ($specialistid == '') {
         $sql = $sqlnospec;
       }
@@ -54,9 +55,10 @@
         $db->close();
         return $problemid;
       } else {
+        $msg = mysqli_error($db);
         $db->close();
-        return NULL;
+        return $msg;
       }
     }
-  
+}
 ?>

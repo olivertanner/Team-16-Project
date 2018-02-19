@@ -1,3 +1,5 @@
+<!--Main call log page for operators to view calls
+Contributors: Ollie Tanner, Eoghan Burke, Tamara Maggs, Isabel Lee, Elie Ako, Will Reynolds-->
 <?php
  session_start();
  ?>
@@ -277,11 +279,11 @@
       function openLinkSpecialityDialog(){
       	openModalDialog($("#linkSpecialityModal"));
       }
-      
+
       function openCallDetailsDialog(){
       	openModalDialog($("#callDetailsModal"));
       }
-      
+
 
       function lookupSpecialists(){
         var problemType = $("#assignSpecialistTypeSel option:selected").text();
@@ -318,12 +320,12 @@
           }
         });
       }
-      
+
       function viewInProblemLog(){
       "window.location.href='problem_log.php'"
-      
-      
-      
+
+
+
       }
 
 
@@ -345,7 +347,7 @@
           <table id="callLogTable" class="noselect">
             <thead>
               <tr>
-                <th>Call ID</th> 
+                <th>Call ID</th>
                 <th>Caller</th>
                 <th>Date</th>
                 <th>Time</th>
@@ -407,7 +409,7 @@
         <input id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'" type="button">
         <!--<input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>-->
 
-      </div>	
+      </div>
     </div>
 
     <div id="problemDetailsModal" class= "problemModal">
@@ -655,8 +657,8 @@
 
       </div>
     </div>
-    
-    
+
+
  <div id="callDetailsModal" class= "callModal">
       <div id="callDetailsModalContent" class="callModal-content">
       <div>
@@ -669,31 +671,31 @@
         <div class="callModal-content-left">
         <strong>CALL</strong><br/><br>
         <div style="display: inline-block; text-align:left;">
-        
+
         <div style="display: inline-block; text-align:left;">
           <label>Caller Name:</label><br/>
           <input type="text" id="detailsID" disabled/>
         </div><br/>
-        
+
         <div style="display: inline-block; text-align:left;">
           <label>Operator Name:</label><br/>
           <input type="text" id="operatorName" disabled/>
         </div><br/>
-        
+
         <div style="display: inline-block; text-align:left;">
           <label>Date of Call:</label><br/>
           <input type="text" id="callDate" disabled/>
         </div><br/>
-        
+
         <div style="display: inline-block; text-align:left;">
           <label>Time of Call:</label><br/>
           <input type="text" id="callTime" disabled/>
         </div><br/>
-        
+
           <label>Reason for call:</label><br/>
           <textarea rows="4"  style= resize:none disabled></textarea>
         </div><br/>
-    
+
         </div><br/>
 
         <div class="callModal-content-right">
