@@ -5,17 +5,19 @@
   $targetptid = $_POST["targetptid"];
   $db = dblogin();
 
-  $ptsql = "SELECT pt1.id, pt1.name, pt1.broad_type_id, pt2.name
+  $ptsql = "SELECT pt1.id, pt1.name, pt1.broad_type_id, pt2.name AS broadname
   FROM `problem_types` AS pt1 LEFT JOIN `problem_types` AS pt2
   ON pt1.broad_type_id = pt2.id
   WHERE pt1.id = '$targetptid';";
-  $broadid;
+  $broadid; $ptname; $broadname;
   $ptresult = $db->query($ptsql);
 
   if ($ptresult->num_rows > 0) {
     // output data of each row
     while($row = $ptresult->fetch_assoc()) {
       $broadid = $row["broad_type_id"];
+      $ptname = $row["name"];
+      $broadname = $row["broadname"];
     }
   }
 
@@ -37,7 +39,7 @@
       $specname = $row["specname"];
       $priority = $row["priority"];
       $found = false;
-      foreach ($specialists as $specialist) {
+      foreach ($specialists as &$specialist) {
         if ($specialist["specid"] == $specid) {
           $found = true;
           if ($priority>0) {
@@ -51,7 +53,8 @@
         "specid" => $specid,
         "specname" => $specname,
         "priority" => ($priority == NULL) ? 0 : $priority,
-        "ptid" => ""
+        "ptid" => "",
+        "ptname" => ""
       );
       array_push($specialists, $arr);
     }
@@ -68,6 +71,8 @@
             if ($specialist["specid"] == $currspid){
               if ($specialist["ptid"] != $targetptid){
                 $specialist["ptid"] = $currptid;
+                $finalptname = ($currptid == $targetptid) ? $ptname : $broadname;
+                $specialist["ptname"] = $finalptname;
               }
             }
             unset($specialist);
