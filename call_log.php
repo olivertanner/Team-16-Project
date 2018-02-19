@@ -115,7 +115,7 @@
         $("#detailsCaller").val(log.calls[row][1]);
         $("#detailsDate").val(log.calls[row][2]);
         $("#detailsTime").val(log.calls[row][3]);
-        $("#detailsProblemType").val(log.calls[row][4]).change();
+        $("#detailsOperator").val(log.calls[row][4]).change();
         $("#detailsSpecialist").val(log.calls[row][5]);
         $("#detailsStatus").val(log.calls[row][6]);
         $("#detailsPriority").val(log.calls[row][7]);
@@ -318,6 +318,13 @@
           }
         });
       }
+      
+      function viewInProblemLog(){
+      "window.location.href='problem_log.php'"
+      
+      
+      
+      }
 
 
     </script>
@@ -394,13 +401,13 @@
     </div>
 
     <div id="right">
-      <div>
-        <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
-        <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
-        <input type="button" id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'"/>
+	<div style="width: 110px;float: right;">
+        <input id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();" type="button">
+        <input id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'" type="button">
+        <input id="adminBtn" class="utilityBtn" value="Admin" onclick="window.location.href='admin.php'" type="button">
         <!--<input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>-->
 
-      </div>
+      </div>	
     </div>
 
     <div id="problemDetailsModal" class= "problemModal">
@@ -665,7 +672,7 @@
         
         <div style="display: inline-block; text-align:left;">
           <label>Caller Name:</label><br/>
-          <input type="text" id="callerName" disabled/>
+          <input type="text" id="detailsID" disabled/>
         </div><br/>
         
         <div style="display: inline-block; text-align:left;">
@@ -711,6 +718,8 @@
           <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" />
           <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" />
         </div>-->
+                <input type="button" id="viewBtn" value="View In Problem Log" onclick="viewInProblemLog();"/>
+
       </div>
     </div>
     </div>

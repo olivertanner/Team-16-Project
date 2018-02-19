@@ -416,7 +416,7 @@
     </div>
 
     <div id="right">
-      <div>
+      <div style="width: 110px;float: right;">
         <input type="button" id="logoutBtn" class="utilityBtn" value="Log out" onclick="logout();"/>
         <input type="button" id="settingsBtn" class="utilityBtn" value="Password" onclick="window.location.href='change_password.php'"/>
         <input type="button" id="specialitiesBtn" class="utilityBtn" value="Specialities" onclick="openLinkSpecialityDialog();"/>
