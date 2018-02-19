@@ -65,6 +65,28 @@ session_start();
 
     function lookupCaller(){
       if ($("#callerLookupTableWrapper:visible").length == 0){
+        $("#callerTable > tbody").html("");
+        $.ajax({
+          url: 'lookup_caller.php',
+          data: {search: $("#nameInput").val()},
+          type: 'POST',
+          dataType: 'json',
+          success: function(response){
+            if (response.length > 0){
+              for (var i = 0; i < response.length; i++) {
+                var id = response[i].id;
+                var name = response[i].name;
+                var job = response[i].job;
+                var dept = response[i].dept;
+                var row = "<tr><td id='callerIdtd'>"+id+"</td>";
+                row+="<td id='callerNametd'>"+name+"</td>";
+                row+="<td id='callerJobtd'>"+job+"</td>";
+                row+="<td id='callerDepttd'>"+dept+"</td></tr>";
+                $("#callerTable tbody").append(row);
+              }
+            }
+          }
+        });
         $("#lookupCallerBtn").val("Back");
         $("#callerLookupTableWrapper").attr("style","display:inline-block;");
       } else {
@@ -130,8 +152,6 @@ session_start();
               <input type="text" id="jobTitleInput" /></br>
               <label >Department:</label></br>
               <input type="text" id="deptInput" /></br>
-              <label >Tel No:</label></br>
-              <input type="text" id="telNoInput" /></br></br>
               <div id="callerLookupTableWrapper" style="position:absolute;top:0;left:0;width:100%;height:100%;background-color:#e0e0e0;overflow:auto;">
                 <table id="callerTable" class="noselect">
                   <thead>
@@ -143,7 +163,7 @@ session_start();
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                    <!--<tr>
                       <td id="callerIdtd">1</td>
                       <td id="callerNametd">Jack</td>
                       <td id="callerJobtd">Salesman</td>
@@ -202,7 +222,7 @@ session_start();
                       <td id="callerNametd">Rob</td>
                       <td id="callerJobtd">Manager</td>
                       <td id="callerDepttd">Software</td>
-                    </tr>
+                    </tr>-->
                   </tbody>
                 </table>
               </div>
