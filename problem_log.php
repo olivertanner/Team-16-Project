@@ -84,10 +84,11 @@
         dataType: "json",
         success: function(response){
           user = response.username;
+          name = response.name;
           $("#username_details").val(user);
+          $("#name_details").val(name);
         }
       });
-        
 
         $(document).on("click", "table tbody tr", function(e) {
           if($(this).hasClass("selected")){
@@ -314,7 +315,7 @@
       function assignSpecialistToProblem(){
         var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
         var specialist = $("#specialistTable tr.selected td:first").next().html();
-        var priority = $( "#myselect addProblemPriority:selected" ).text();
+        var priority = $( "#addProblemPriority option:selected" ).text();
         log.calls[row][5] = specialist;
         log.calls[row][6] = "Assigned";
         log.calls[row][7] = priority;

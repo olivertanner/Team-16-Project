@@ -81,7 +81,7 @@ background-color: transparent;
     box-shadow: none;
     cursor:default;
     text-align:left;
-    width:75px;
+    width:120px;
 	font-size: 14px;
 }
 
@@ -108,7 +108,7 @@ background-color: transparent;
     margin: auto;
     float: left;
     color: white;
-    margin-top:65px;
+    margin-top:27px;
 }
 #filter label {
   font-weight: 550;
