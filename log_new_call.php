@@ -104,14 +104,26 @@ session_start();
     }
 
     function lookupSpecialists(){
+      var problemType =
+        $("#addProblemTypeSel option:selected").text().split(" ")[0];
       $.ajax({
         url: 'get_specialists.php',
-        data: {},
+        data: {targetptid: problemType},
         type: 'POST',
         dataType: 'json',
         success: function(response){
-          if (!response.success){
-            alert(response.msg);
+          if (!response.length >0){
+            var rows = "";
+            for (var i = 0; i < response.length; i++) {
+              var row = "<tr><td>"+response[i].specid+"</td>";
+              row += "<td>"+response[i].specname+"</td>";
+              row += "<td>"+response[i].ptid.length > 0 ?
+               response[i].ptid : "None" + "</td>";
+              row += "<td>"+response[i].priority+"</td></tr>";
+              rows += row;
+            }
+            $("#specialistTable tbody").html("");
+            $("#specialistTable tbody").html(rows);
           }
         }
       })
