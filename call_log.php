@@ -361,9 +361,9 @@
     <div id="left">
 
     <div id="user_details">
-    <label>Username:</label>
+    <label>Username:</label><br>
     <input type="text" id="username_details" class="detailsText"/><br>
-    <label>Name:</label>
+    <label>Name:</label><br>
     <input type="text" id="name_details" class="detailsText"/><br>
     </div>
 
