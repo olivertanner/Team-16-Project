@@ -55,6 +55,33 @@ session_start();
           $("#addProblemTypeSel").append(response);
         }
       });
+      $.ajax({
+        url: 'get_hardware.php',
+        data: {},
+        type: 'GET',
+        dataType: 'html',
+        success: function(response){
+          $("#addHardware").append(response);
+        }
+      });
+      $.ajax({
+        url: 'get_os.php',
+        data: {},
+        type: 'GET',
+        dataType: 'html',
+        success: function(response){
+          $("#addOS").append(response);
+        }
+      });
+      $.ajax({
+        url: 'get_software.php',
+        data: {},
+        type: 'GET',
+        dataType: 'html',
+        success: function(response){
+          $("#addSoftware").append(response);
+        }
+      });
 
     });
 
@@ -127,14 +154,6 @@ session_start();
           }
         }
       });
-      /*var problemType = $("#addProblemTypeSel option:selected").text();
-      if (problemType !== ""){
-        $("#specialistTable tbody").html("");
-        var rows = "";
-        var row = '<tr><td>'+problemType+'</td><td>Alan</td><td>0</td></tr>';
-        rows = row + row + row + row + row + row + row + row + row + row;
-        $("#specialistTable tbody").append(rows);
-      }*/
     }
 
     function addProblem(){
