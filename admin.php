@@ -124,9 +124,11 @@ $(document).ready(function(){
         <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#addProblemTypeModal'));" />
         </div>
-        <h1 style="width:100%;">Add New Problem Type</h1>
-
-		<p class="lab">Enter the appropriate details below:</p>
+        
+        <div class="modal_container">
+        	<h1 style="width:100%;">Add New Problem Type</h1>	
+        	<p class="lab">Enter the appropriate details below:</p>
+		<div class="modal_wrapper">
 
 		<form method="post">
 
@@ -147,10 +149,11 @@ $(document).ready(function(){
 
 
   		</div>
-
+		</div>
 		<div class="typeButtons">
 			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#addProblemTypeModal'));">
-			<input type="button" class="btnAddProblemType" value="Add Problem Type" onclick="addProblemType();">
+			<input type="button" class="btnSubmit"  value="Add Problem Type" onclick="addProblemType();">
+		</div>
 		</div>
 
 		</form>
@@ -163,9 +166,12 @@ $(document).ready(function(){
         <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#addOperatorModal'));" />
         </div>
-        <h1 style="width:100%;">Add New Operator</h1>
+
 		<form method="post">
 
+		<div class="modal_container">
+		        <h1 style="width:100%;">Add New Operator</h1>
+		<div class="modal_wrapper">
 		<div class="typeInput">
   			<label class="col-md-4 control-label" for="textinput">Enter New Operator's Name:</label>
   			<input id="operatorNameInput" name="textinput" type="text" class="form-control input-md">
@@ -186,10 +192,12 @@ $(document).ready(function(){
   			<label class="col-md-4 control-label" for="textinput">Create Operator Username:</label>
   			<input id="operatorUsernameInput" name="textinput" type="text" class="form-control input-md">
 		</div>
+		</div>
 
 		<div class="typeButtons">
-			<input type="button" value="Cancel" onClick="closeModalDialog($('#addOperatorModal'));">
-			<input type="button" value="Add Operator" onClick="addOperatorOrSpecialist(0);">
+			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#addOperatorModal'));">
+			<input type="button" class="btnSubmit" value="Add Operator" onClick="addOperatorOrSpecialist(0);">
+		</div>
 		</div>
 		</form>
       </div>
@@ -200,33 +208,37 @@ $(document).ready(function(){
         <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#addSpecialistModal'));" />
         </div>
-        <h1 style="width:100%;">Add New Specialist</h1>
 		<form method="post">
 
+		<div class="modal_container">
+				        <h1 style="width:100%;">Add New Specialist</h1>
+		<div class="modal_wrapper">
 		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Enter New Specialist's Name:</label>
+  			<label class="" for="textinput">Enter New Specialist's Name:</label>
   			<input id="specialistNameInput" name="textinput" type="text" class="form-control input-md">
 		</div>
 
 		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Job Title:</label>
+  			<label class="" for="textinput">Job Title:</label>
   			<input id="specialistJobTitleInput" name="textinput" type="text" class="form-control input-md" value="Specialist" disabled>
 		</div>
 
 
   		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Department:</label>
+  			<label class="" for="textinput">Department:</label>
   			<input id="specialistDeptInput" name="textinput" type="text" class="form-control input-md" value="Helpdesk" disabled>
 		</div>
 
   		<div class="typeInput">
-  			<label class="col-md-4 control-label" for="textinput">Create Specialist Username:</label>
+  			<label class="" for="textinput">Create Specialist Username:</label>
   			<input id="specialistUsernameInput" name="textinput" type="text" class="form-control input-md">
 		</div>
 
+		</div>
 		<div class="typeButtons">
-			<input type="button" value="Cancel" onClick="closeModalDialog($('#addSpecialistModal'));">
-			<input type="button" value="Add Specialist" onClick="addOperatorOrSpecialist(1);">
+			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#addSpecialistModal'));">
+			<input type="button" class="btnSubmit" value="Add Specialist" onClick="addOperatorOrSpecialist(1);">
+		</div>
 		</div>
 		</form>
 
