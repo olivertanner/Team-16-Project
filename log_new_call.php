@@ -62,6 +62,25 @@ session_start();
       $(this).addClass("selected").siblings().removeClass("selected");
     });
 
+
+        /*$(document).on("click", "table tbody tr", function(e) {
+          if($(this).hasClass("selected")){
+            $(this).removeClass("selected");
+          } else {
+            $(this).addClass("selected").siblings().removeClass("selected");
+          }
+          if ($(this).hasClass("selected")) {
+            showProblemDetails();
+            buttonRename();
+          } else {
+            clearProblemDetails();
+          }
+        });*/
+
+
+
+
+
     function openAddProblemDialog(){
       $("#addProblemModal").attr("style","display:inline-block");
     }
@@ -70,6 +89,8 @@ session_start();
       $("#addProblemModal").removeAttr("style");
       $("#addProblemModal").attr("style","display:none");
     }
+    
+    
 
     function lookupCaller(){
       if ($("#callerLookupTableWrapper:visible").length == 0){
