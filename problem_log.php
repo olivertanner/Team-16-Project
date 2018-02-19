@@ -26,13 +26,13 @@
           ["1","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","High"],
           ["2","Ben","01-01-2017","13:00:00","Networking","None","Pending","N/A"],
           ["3","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
-          ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-          ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-          ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-          ["7","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
-          ["8","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
-          ["9","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
-          ["10","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
+          ["4","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","Low"],
+          ["5","Ben","01-01-2017","13:00:00","Networking","None","Pending","Medium"],
+          ["6","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
+          ["7","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","Medium"],
+          ["8","Ben","01-01-2017","13:00:00","Networking","None","Pending","Medium"],
+          ["9","Charles","01-01-2017","13:00:00","Networking","Tom","Closed","N/A"],
+          ["10","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned","High"],
           ["11","Ben","01-01-2017","13:00:00","Networking","None","Pending"],
           ["12","Charles","01-01-2017","13:00:00","Networking","Tom","Closed"],
           ["13","Alex","01-01-2017","13:00:00","Networking","Tom","Assigned"],
@@ -63,7 +63,9 @@
               row += "<td class='specialisttd'>"+log.calls[i][j]+"</td>";
             } else if (j == 6) {
               row += "<td class='statustd'>"+log.calls[i][j]+"</td>";
-            } else {
+            } else if (j == 7) {
+              row += "<td class='prioritytd'>"+log.calls[i][j]+"</td>";
+            }else {
               row += "<td>"+log.calls[i][j]+"</td>";
             }
 
@@ -151,7 +153,10 @@
           onType = false,
           onAssigned = false,
           onPending = false,
-          onClosed = false;
+          onClosed = false,
+          onLow = false,
+          onMedium = false,
+          onHigh = false;
 
         if ($.trim($("#filterID").val()).length > 0){
           onID = true;
@@ -171,6 +176,15 @@
         if ($("#filterClosed").is(':checked')){
           onClosed = true;
         }
+        if ($("#filterLow").is(':checked')){
+          onLow = true;
+        }
+        if ($("#filterMedium").is(':checked')){
+          onMedium = true;
+        }
+        if ($("#filterHigh").is(':checked')){
+          onHigh = true;
+        }
         var rows = "";
         for (var i = 0; i < log.calls.length; i++) {
           if ((onID ? $("#filterID").val() == log.calls[i][0] : true) &&
@@ -179,7 +193,12 @@
             ((onAssigned == onClosed && onAssigned == onPending && onAssigned != null) ? true :
             (onAssigned ? "Assigned" == log.calls[i][6] : false) ||
             (onPending ? "Pending" == log.calls[i][6] : false) ||
-            (onClosed ? "Closed" == log.calls[i][6] : false))){
+            (onClosed ? "Closed" == log.calls[i][6] : false)) &&
+            ((onLow == onMedium && onLow == onHigh && onAssigned != null) ? true :
+            (onLow ? "Low" == log.calls[i][7] : false) ||
+            (onMedium ? "Medium" == log.calls[i][7] : false) ||
+            (onHigh ? "High" == log.calls[i][7] : false))
+            ){
               var row = "<tr>";
               for (var j = 0; j < log.calls[i].length; j++) {
                 if (j == 4){
@@ -188,7 +207,10 @@
                   row += "<td class='specialisttd'>"+log.calls[i][j]+"</td>";
                 } else if (j == 6) {
                   row += "<td class='statustd'>"+log.calls[i][j]+"</td>";
-                } else {
+                } else if (j == 7) {
+                  row += "<td class='prioritytd'>"+log.calls[i][j]+"</td>";
+                } 
+                else {
                   row += "<td>"+log.calls[i][j]+"</td>";
                 }
 
@@ -344,6 +366,7 @@
         </div>
       </div>
       <div>
+        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
         <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
         <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
@@ -378,6 +401,12 @@
           <input type= "checkbox" name= "Assigned" value= "Assigned" id= "filterAssigned"> Assigned </input> <br>
           <input type= "checkbox" name= "Pending" value= "Pending" id= "filterPending"> Pending </input> <br>
           <input type= "checkbox" name= "Closed" value= "Closed" id= "filterClosed"> Closed </input> <br>
+        </div><br>
+        <div class="filterElement">
+          <label>Priority</label><br/>
+          <input type= "checkbox" name= "Low" value= "Low" id= "filterLow"> Low </input> <br>
+          <input type= "checkbox" name= "Medium" value= "Medium" id= "filterMedium"> Medium </input> <br>
+          <input type= "checkbox" name= "High" value= "High" id= "filterHigh"> High </input> <br>
         </div>
         <div class="lastfilterElement">
         <input type="button" id="applyFiltersBtn" value="Apply" onclick="filter();" />
