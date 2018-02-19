@@ -36,6 +36,7 @@ $(document).ready(function(){
       success: function(response){
         if (response.success){
           alert("New problem type added");
+          $("#in-pt-name").val("");
           location.reload();
         } else {
           alert(response.msg);
@@ -124,9 +125,9 @@ $(document).ready(function(){
         <div>
           <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#addProblemTypeModal'));" />
         </div>
-        
+
         <div class="modal_container">
-        	<h1 style="width:100%;">Add New Problem Type</h1>	
+        	<h1 style="width:100%;">Add New Problem Type</h1>
         	<p class="lab">Enter the appropriate details below:</p>
 		<div class="modal_wrapper">
 
