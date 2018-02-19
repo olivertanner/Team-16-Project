@@ -275,6 +275,10 @@
       function openLinkSpecialityDialog(){
       	openModalDialog($("#linkSpecialityModal"));
       }
+      
+      function openCallDetailsDialog(){
+      	openModalDialog($("#callDetailsModal"));
+      }
 
       function lookupSpecialists(){
         var problemType = $("#assignSpecialistTypeSel option:selected").text();
@@ -346,7 +350,7 @@
         </div>
       </div>
       <div>
-        <input type="button" id="assignSpecialistButton" value="Assign Specialist" onclick="openAssignSpecialistDialog();" />
+        <input type="button" id="callDetailsButton" value="Call Details" onclick="openCallDetailsDialog();" />
         <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
         <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
@@ -642,6 +646,73 @@
 		</div>
 
       </div>
+    </div>
+    
+    
+ <div id="callDetailsModal" class= "callModal">
+      <div id="callDetailsModalContent" class="callModal-content">
+      <div>
+          <input type="button" id="exitBtn" value="&times" onclick="closeModalDialog($('#callDetailsModal'));" />
+        </div>
+        <h2>CALL DETAILS</h2>
+
+        <div class="modal-content-wrapper">
+
+        <div class="callModal-content-left">
+        <strong>CALL</strong><br/><br>
+        <div style="display: inline-block; text-align:left;">
+        
+        <div style="display: inline-block; text-align:left;">
+          <label>Caller Name:</label><br/>
+          <input type="text" id="callerName" disabled/>
+        </div><br/>
+        
+        <div style="display: inline-block; text-align:left;">
+          <label>Operator Name:</label><br/>
+          <input type="text" id="operatorName" disabled/>
+        </div><br/>
+        
+        <div style="display: inline-block; text-align:left;">
+          <label>Date of Call:</label><br/>
+          <input type="text" id="callDate" disabled/>
+        </div><br/>
+        
+        <div style="display: inline-block; text-align:left;">
+          <label>Time of Call:</label><br/>
+          <input type="text" id="callTime" disabled/>
+        </div><br/>
+        
+          <label>Reason for call:</label><br/>
+          <textarea rows="4"  style= resize:none disabled></textarea>
+        </div><br/>
+    
+        </div><br/>
+
+        <div class="callModal-content-right">
+        <strong>PROBLEMS</strong><br/>
+        <div style="position:relative;clear:both;">
+        <div style="height:30%;overflow-y:scroll;border:1px solid black;">
+          <table id="" class="noselect">
+            <thead>
+              <tr>
+                <th>Problem ID</th>
+                <th>Problem Type</th>
+                <th>Specialist</th>
+                <th>Status</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+        <!--<div id="problemDetailsButtons">
+          <input type="button" id="cancelEditBtn" value="Cancel" onclick="cancelEdit();" />
+          <input type="button" id="saveEditBtn" value="Save" onclick="saveEdit();" />
+        </div>-->
+      </div>
+    </div>
+    </div>
     </div>
 
   </body>

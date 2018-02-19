@@ -200,6 +200,21 @@ background-color: transparent;
 	background-color: #9b2020;
 }
 
+#callDetailsButton{
+	background-color: #5b5b5b;
+    border: none;
+    color: white;
+    padding: 8px 13px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom:3%;
+    border-radius: 2px;
+}
+#callDetailsButton:hover{
+	background-color: #444444;
+}
 
 
 #callLogTable{
@@ -290,9 +305,8 @@ float:left;
 #contentright {
 	display: inline-block;
 	text-align:left;
-	width: 75%;
+	width: 70%;
 	padding:15px;
-	padding-top:10%;
 	max-height:500px;
 }
 
@@ -546,6 +560,52 @@ width:100%;
 
 }
 
+.callModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+
+}
+
+.callModal-content {
+    background-color: #f4f4f4;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 65%;
+    overflow-y: auto;
+    display:flex;
+    flex-direction: column;
+    margin-bottom:10%;
+      position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+.callModal-content-left {
+  display:inline-block;
+  float:left;
+  width:35%;
+  border-right:1px solid black;
+  padding:15px;
+}
+.callModal-content-right {
+  display:inline-block;
+  width:65%;
+  padding:15px;
+
+}
+
+
+
 
 
 #exitBtn{
@@ -727,4 +787,8 @@ width:100%;
 .typeButtons{
 	text-align:center;
 	padding-top:5%;
+}
+
+#contentright_buttons{
+text-align:center;
 }

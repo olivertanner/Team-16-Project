@@ -214,10 +214,12 @@ session_start();
 
 	    <div id="contentright">
         <h2>PROBLEMS</h2></br>
+        <div id="contentright_buttons">
         <input type="button" id="addProblemBtn" value="Add Problem" onclick="openAddProblemDialog();" />
         <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="$('#problemTable tr.selected').remove();" />
         </br>
         </br>
+        </div>
         <table id="problemTable">
           <thead>
             <tr>
