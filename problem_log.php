@@ -438,7 +438,7 @@
           <input type="text" id="filterID" class="filterText"/><br><br>
         </div>
         <div class="filterElement">
-          <label>Caller Name</label><br/>
+          <label>Caller Name</label><br>
           <input type="text" id="filterName" class="filterText"/><br><br>
         </div>
         <div class="filterElement">
