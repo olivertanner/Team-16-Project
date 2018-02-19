@@ -14,10 +14,16 @@
         $sqls = "SELECT * FROM `specialists` WHERE staff_id = '$userid';";
         $sqlo = "SELECT * FROM `operators` WHERE staff_id = '$userid';";
         $staffsql = "SELECT * FROM `staff` WHERE id = '$userid';";
-        if ($db->query($sqls)){
+        if (($roleresult = $db->query($sqls))->num_rows > 0){
           $_SESSION["role"] = "specialist";
-        } elseif ($db->query($sqlo)){
+          while($row = $roleresult->fetch_assoc()) {
+            $_SESSION["specialist_id"] = $row["id"];
+          }
+        } elseif (($roleresult = $db->query($sqlo))->num_rows > 0){
           $_SESSION["role"] = "operator";
+          while($row = $roleresult->fetch_assoc()) {
+            $_SESSION["operator_id"] = $row["id"];
+          }
         } else {
           echo json_encode(array(
           'success' => false,
