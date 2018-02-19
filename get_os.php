@@ -11,7 +11,7 @@
     if ($result->num_rows > 0) {
       // output data of each row
       while($row = $result->fetch_assoc()) {
-        $html = '<option>'.$row['name'].'</option>';
+        $html = '<option>'.$row['id'].' - '.$row['name'].'</option>';
         $rows .= $html;
       }
       echo $rows;
