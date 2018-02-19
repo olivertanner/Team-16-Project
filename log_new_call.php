@@ -47,7 +47,15 @@ session_start();
       +("0" + date.getSeconds()).slice(-2);
       $("#dateInput").val(currentDate);
       $("#timeInput").val(currentTime);
-      $("#hardwareTypeList").html(populateFields());
+      $.ajax({
+        url: 'get_problem_types.php',
+        data: {},
+        type: 'GET',
+        success: function(response){
+          $("#addProblemTypeSel").append(response);
+        }
+      });
+
     });
 
     $(document).on("click", "table tbody tr", function(e) {
@@ -163,66 +171,6 @@ session_start();
                     </tr>
                   </thead>
                   <tbody>
-                    <!--<tr>
-                      <td id="callerIdtd">1</td>
-                      <td id="callerNametd">Jack</td>
-                      <td id="callerJobtd">Salesman</td>
-                      <td id="callerDepttd">Sales</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">2</td>
-                      <td id="callerNametd">Tom</td>
-                      <td id="callerJobtd">Manager</td>
-                      <td id="callerDepttd">Sales</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">3</td>
-                      <td id="callerNametd">Bob</td>
-                      <td id="callerJobtd">Developer</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">4</td>
-                      <td id="callerNametd">George</td>
-                      <td id="callerJobtd">Developer</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">5</td>
-                      <td id="callerNametd">Anne</td>
-                      <td id="callerJobtd">Assistant</td>
-                      <td id="callerDepttd">HR</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">6</td>
-                      <td id="callerNametd">Gina</td>
-                      <td id="callerJobtd">Designer</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">7</td>
-                      <td id="callerNametd">Rob</td>
-                      <td id="callerJobtd">Manager</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">8</td>
-                      <td id="callerNametd">Rob</td>
-                      <td id="callerJobtd">Manager</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">9</td>
-                      <td id="callerNametd">Rob</td>
-                      <td id="callerJobtd">Manager</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>
-                    <tr>
-                      <td id="callerIdtd">10</td>
-                      <td id="callerNametd">Rob</td>
-                      <td id="callerJobtd">Manager</td>
-                      <td id="callerDepttd">Software</td>
-                    </tr>-->
                   </tbody>
                 </table>
               </div>
@@ -274,12 +222,6 @@ session_start();
               <div style="display:inline-block;">
                 <label class="sectionHeader">Problem Type:</label></br>
                 <select id="addProblemTypeSel" class="problemTypeSel">
-                  <option value='empty'></option>
-                  <option value='Networking'>Networking</option>
-                  <option value='Printing'>Printing</option>
-                  <option value='Operating System'>Operating System</option>
-                  <option value='Mouse'>Mouse</option>
-                  <option value='Keyboard'>Keyboard</option>
                 </select>
               </div>
               <input type="button" id="lookupSpecialistsBtn" value="Lookup Specialists" onclick="lookupSpecialists();" />
