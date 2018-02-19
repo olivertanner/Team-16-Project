@@ -118,7 +118,8 @@ session_start();
       var problemID = Math.floor(Math.random()*1000);
       var problemType = $("#addProblemTypeSel option:selected").text();
       var specialistName = $("#specialistTable tr.selected").length ? $("#specialistTable tr.selected td:first").next().text() : "None";
-      var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+specialistName+'</td></tr>';
+      var problemPriority = $("#addProblemPriority option:selected").text();
+      var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+specialistName+'</td><td>'+problemPriority+'</td></tr>';
       $("#problemTable tbody").append(row);
       closeAddProblemDialog();
     }
@@ -188,12 +189,13 @@ session_start();
         </br>
         </br>
         </div>
-        <table id="problemTable">
+        <table id="problemTable" style="width: 80%;">
           <thead>
             <tr>
               <th>Problem ID</th>
               <th>Problem Type</th>
               <th>Specialist Assigned</th>
+              <th>Priority</th>
             </tr>
           </thead>
           <tbody>
@@ -219,6 +221,7 @@ session_start();
         <div class="modal-content-left">
           <div>
             <div>
+            <div>
               <div style="display:inline-block;">
                 <label class="sectionHeader">Problem Type:</label></br>
                 <select id="addProblemTypeSel" class="problemTypeSel">
@@ -228,7 +231,15 @@ session_start();
             </div>
             </br>
             <label class="sectionHeader">Problem Description:</label></br>
-            <textarea id="addProblemTxtArea"></textarea>
+            <textarea id="addProblemTxtArea"></textarea><br>
+        <label class="sectionHeader">Problem Priority:</label></br>
+          <select id="addProblemPriority" class="problemPrioritySel">
+          	<option value='empty'></option>
+            <option value='Networking'>Low</option>
+            <option value='Printing'>Medium</option>
+            <option value='Operating System'>High</option>
+          </select>
+          </div>
           </div>
           <div>
             <h2>Hardware</h2>
@@ -258,6 +269,7 @@ session_start();
                   <th>Type</th>
                   <th>Name</th>
                   <th>Count</th>
+                  <th>Workload</th>
                 </tr>
               </thead>
               <tbody></tbody>

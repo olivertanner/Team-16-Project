@@ -281,6 +281,7 @@
       function openCallDetailsDialog(){
       	openModalDialog($("#callDetailsModal"));
       }
+      
 
       function lookupSpecialists(){
         var problemType = $("#assignSpecialistTypeSel option:selected").text();
@@ -337,14 +338,11 @@
           <table id="callLogTable" class="noselect">
             <thead>
               <tr>
-                <th>Problem ID</th>
+                <th>Call ID</th> 
                 <th>Caller</th>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Problem Type</th>
-                <th>Specialist</th>
-                <th>Status</th>
-                <th>Priority</th>
+                <th>Operator</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -353,9 +351,10 @@
       </div>
       <div>
         <input type="button" id="callDetailsButton" value="Call Details" onclick="openCallDetailsDialog();" />
-        <input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
+        <input type="button" id="viewProblemsButton" value="View Problems" onclick="location.href='problem_log.php';" />
+        <!--<input type="button" id="checkProblemDetailsButton" value="Problem Details" onclick="openProblemDetailsDialog();" />
         <input type="button" id="checkSolutionButton" value="View Solution" onclick="openViewSolutionDialog();" />
-        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />
+        <input type="button" id="closeProblemButton" value="Close Problem" onclick="openProblemDialog();" />-->
       </div>
     </div>
 
