@@ -12,9 +12,15 @@ function checkPassword($username, $password){
     // output data of each row
     while($row = $result->fetch_assoc()) {
       $hash = $row["password"];
-      return password_verify($password, $hash);
+      $userid = $row["staff_id"];
+      return json_encode(array(
+        'success' => password_verify($password, $hash),
+        'userid' => $userid
+      ));
     }
   }
-  return false;
+  return json_encode(array(
+    'success' => false
+  ));
 }
  ?>

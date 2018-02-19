@@ -4,10 +4,12 @@
   $username = $_SESSION["username"];
   $userid = $_SESSION["userid"];
   $role = $_SESSION["role"];
+  $name = $_SESSION["name"];
   echo json_encode(array(
     "username" => $username,
     "userid" => $userid,
-    "role" => $role
+    "role" => $role,
+    "name" => $name
   ));
   exit;
 ?>

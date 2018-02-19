@@ -72,7 +72,7 @@
           rows += row;
         };
         $("#callLogTable > tbody:last-child").append(rows);
-        
+
       var userid;
       var user;
       $.ajax({
@@ -82,7 +82,9 @@
         dataType: "json",
         success: function(response){
           user = response.username;
+          name = response.name;
           $("#username_details").val(user);
+          $("#name_details").val(name);
         }
       });
 
@@ -354,14 +356,14 @@
     </div>
 
     <div id="left">
-    
+
     <div id="user_details">
     <label>Username:</label>
     <input type="text" id="username_details" class="detailsText"/><br>
     <label>Name:</label>
     <input type="text" id="name_details" class="detailsText"/><br>
     </div>
-    
+
       <div id="filter">
         <h2>Filter</h2>
         <div class="filterElement">
