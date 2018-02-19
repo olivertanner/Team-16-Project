@@ -143,7 +143,7 @@ session_start();
             var rows = "";
             for (var i = 0; i < response.length; i++) {
               var ptname = (response[i].ptid.length > 0) ? response[i].ptname : 'None';
-              var row = "<tr><td>"+response[i].specid+"</td>";
+              var row = "<tr><td id='specialistId'>"+response[i].specid+"</td>";
               row += "<td>"+response[i].specname+"</td>";
               row += "<td>"+ptname+"</td>";
               row += "<td>"+response[i].priority+"</td></tr>";
@@ -157,6 +157,43 @@ session_start();
     }
 
     function addProblem(){
+      var problemTypeId = $("#addProblemTypeSel option:selected").text().split(" ")[0];
+      var desc = $("#addProblemTxtArea").val();
+      var notes = "";
+      var hardwareId = $("#addHardware option:selected").text().split(" ")[0];
+      var softwareId = $("#addSoftware option:selected").text().split(" ")[0];
+      var osId = $("#addOS option:selected").text().split(" ")[0];
+      var specialistId = $("#specialistTable tr.selected").length ? $("#specialistTable tr.selected td:first").text() : "";
+      var status = (specialistId == "") ? 0 : 1;
+      var priority = $("#addProblemPriority").prop('selectedIndex');
+      $.ajax({
+        url: 'create_problem.php',
+        data: {
+          problemTypeId: problemTypeId,
+          desc: desc,
+          notes: notes,
+          hardwareId: hardwareId,
+          softwareId: softwareId,
+          osId: osId,
+          specialistId: specialistId,
+          status: status,
+          priority: priority
+        },
+        type: 'POST',
+        success: function(response){
+          var problems;
+          if (!window.sessionStorage.getItem("problems")){
+            problems = new Array(response);
+          } else {
+            problems = window.sessionStorage.getItem("problems");
+            problems = JSON.parse(problems);
+            problems.push(response);
+          }
+          window.sessionStorage.setItem("problems", JSON.stringify(problems));
+          closeAddProblemDialog();
+        }
+      });
+      /*
       var problemID = Math.floor(Math.random()*1000);
       var problemType = $("#addProblemTypeSel option:selected").text();
       var specialistName = $("#specialistTable tr.selected").length ? $("#specialistTable tr.selected td:first").next().text() : "None";
@@ -164,6 +201,53 @@ session_start();
       var row = '<tr><td>'+problemID+'</td><td>'+problemType+'</td><td>'+specialistName+'</td><td>'+problemPriority+'</td></tr>';
       $("#problemTable tbody").append(row);
       closeAddProblemDialog();
+      */
+    }
+
+    function removeProblem(){
+      window.sessionStorage.removeItem("problems");
+    }
+
+    function logCall(){
+      var callerid = $("#idNoInput").val();
+      var operatorid;
+      $.when(
+        $.ajax({
+          url: "sessionhandler.php",
+          data: {},
+          type: "GET",
+          dataType: "json",
+          success: function(response){
+            var opid = response.operatorid;
+            operatorid = opid;
+          }
+        })
+      ).done(function(){
+        var operatorid = window.sessionStorage.getItem("operatorid");
+        var reason = $("#reasonTxtArea").val();
+        var problems;
+        if (!window.sessionStorage.getItem("problems")){
+          problems = "";
+        } else {
+          problems = window.sessionStorage.getItem("problems");
+          problems = JSON.parse(problems);
+        }
+        $.ajax({
+          url: 'add_call.php',
+          data: {
+            callerid: callerid,
+            operatorid: operatorid,
+            reason: reason,
+            problems: problems
+          },
+          type: 'POST',
+          success: function(response){
+
+          }
+        });
+      });
+
+
     }
 
     $(document).on("dblclick", "#callerTable tbody tr", function(e) {
@@ -219,7 +303,7 @@ session_start();
               </div>
             </div>
           <label>Reason for call:</label>
-          <textarea rows="4"  style= resize:none ></textarea></br></br>
+          <textarea id="reasonTxtArea" rows="4"  style= resize:none ></textarea></br></br>
         </div>
       </div>
 
@@ -227,15 +311,14 @@ session_start();
         <h2>PROBLEMS</h2></br>
         <div id="contentright_buttons">
         <input type="button" id="addProblemBtn" value="Add Problem" onclick="openAddProblemDialog();" />
-        <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="$('#problemTable tr.selected').remove();" />
+        <input type="button" id="rmvProblemBtn" value="Remove Problem" onclick="removeProblem();" />
         </br>
         </br>
         </div>
         <table id="problemTable" style="width: 80%;">
           <thead>
             <tr>
-              <th>Problem ID</th>
-              <th>Problem Type</th>
+              <th>Problem Type Id</th>
               <th>Specialist Assigned</th>
               <th>Priority</th>
             </tr>
@@ -248,7 +331,7 @@ session_start();
     </div>
       <div style="display: inline-block; text-align:left;">
         <input type="button" id="cancelCallBtn" value="Cancel" onclick="location.href='call_log.php';" />
-        <input type="button" id="logCallBtn" value="Log Call" onclick="location.href='call_log.php';" />
+        <input type="button" id="logCallBtn" value="Log Call" onclick="logCall();" />
       </div>
     </div>
     <div id="left2"></div>
@@ -276,10 +359,9 @@ session_start();
             <textarea id="addProblemTxtArea"></textarea><br>
         <label class="sectionHeader">Problem Priority:</label></br>
           <select id="addProblemPriority" class="problemPrioritySel">
-          	<option value='empty'></option>
-            <option value='Networking'>Low</option>
-            <option value='Printing'>Medium</option>
-            <option value='Operating System'>High</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
           </select>
           </div>
           </div>
