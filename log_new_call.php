@@ -268,18 +268,17 @@ session_start();
             <h2>Hardware</h2>
             <datalist id="hardwareTypeList"></datalist>
             <label class="sectionHeader">Serial No.:</label></br>
-            <input type="text" /></br>
-            <label class="sectionHeader">Type:</label></br>
-            <input type="text" list="hardwareTypeList"/></br>
-            <label class="sectionHeader">Make:</label></br>
-            <input type="text" /></br>
+   			<select id="addHardware" class="problemPrioritySel">
+          </select>
           </div>
           <div>
             <h2>Software</h2>
             <label class="sectionHeader">Operating System:</label></br>
-            <input type="text" /></br>
+            <select id="addOS" class="problemPrioritySel">
+          </select></br>
             <label class="sectionHeader">Software:</label></br>
-            <input type="text" /></br>
+            <select id="addSoftware" class="problemPrioritySel">
+          </select></br>
             <input type="button" id="checkLicenceBtn" value="Check Licence" onclick=""/></br>
           </div>
         </div>
