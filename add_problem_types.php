@@ -1,3 +1,6 @@
+<!-- PHP code to retrieve the problem types from the database
+Contributors - Ollie Tanner, Elie Jr Akobeto -->
+
 <?php
 session_start();
 header("Content-Type: application/json");

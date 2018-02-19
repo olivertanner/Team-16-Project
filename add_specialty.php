@@ -1,3 +1,7 @@
+<!-- PHP code allowing a specialist to add a new speciality to the database 
+Contributors - Ollie Tanner -->
+
+
 <?php
 session_start();
 header("Content-Type: application/json");

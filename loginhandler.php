@@ -1,3 +1,6 @@
+<!-- PHP code to handle the login connection with the database
+Contributors - Ollie Tanner -->
+
 <?php
 	session_start();
   header("Content-type: application/json");

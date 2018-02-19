@@ -1,3 +1,5 @@
+<!-- PHP code to allow the operator to add a new operator / specialist into the database
+Contributors - Ollie Tanner -->
 <?php
 session_start();
 header("Content-Type: application/json");

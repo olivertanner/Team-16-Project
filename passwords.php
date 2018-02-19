@@ -1,3 +1,6 @@
+<!-- PHP code to generate a new random password
+Contributors - Ollie Tanner, Elie Jr Akobeto -->
+
 <?php
 function generatePasswordX() {
     $alphabet = "abcdefghijklmnopqrstuwxyzABCDEFGHIJKLMNOPQRSTUWXYZ0123456789";

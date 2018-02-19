@@ -1,3 +1,6 @@
+<!-- PHP code for admin page (admin.php) allowing the operator to add new operator/specialist/problem type 
+Contributors - Ollie Tanner, Eoghan Burke -->
+
 <html>
   <head>
     <title>Admin</title>

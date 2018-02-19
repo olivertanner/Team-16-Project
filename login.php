@@ -1,3 +1,6 @@
+<!-- PHP code allowing the user to log into the system
+Contributors - Ollie Tanner, Isabel Lee -->
+
 <?php
 	session_start();
 ?>

@@ -1,3 +1,6 @@
+<!-- PHP code to handle check the password validity with the database
+Contributors - Ollie Tanner -->
+
 <?php
 function checkPassword($username, $password){
   include 'dblogin.php';

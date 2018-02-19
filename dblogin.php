@@ -1,3 +1,6 @@
+<!-- PHP code to connect to the database
+Contributors - Ollie Tanner -->
+
 <?php
 function dblogin(){
   $username="root";

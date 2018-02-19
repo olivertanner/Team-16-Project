@@ -1,3 +1,6 @@
+<!-- PHP code for change password page (change_password.php) allowing the user to change their current password 
+Contributors - Tamara Maggs -->
+
 <?php
 session_start();
 ?>

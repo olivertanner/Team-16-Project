@@ -1,3 +1,6 @@
+<!-- PHP code to handle check the password validity with the database
+Contributors - Ollie Tanner -->
+
 <?php
   session_start();
   header("Content-Type: application/json");

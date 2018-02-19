@@ -1,3 +1,6 @@
+<!-- PHP code to retrieve the Specialists' speciality type from the database 
+Contributors - Ollie Tanner -->
+
 <?php
   session_start();
   header("Content-Type: text/html");

@@ -1,3 +1,6 @@
+<!-- PHP code to keep the appropriate fields in the current logged in session so they can be used in the system 
+Contributors - Ollie Tanner -->
+
 <?php
   session_start();
   header("Content-Type: application/json");

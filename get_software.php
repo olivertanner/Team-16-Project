@@ -1,3 +1,7 @@
+<!-- PHP code to retrieve the Software fields from the database 
+Contributors - Ollie Tanner -->
+
+
 <?php
   session_start();
   header("Content-Type: text/html");

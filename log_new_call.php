@@ -84,25 +84,14 @@ session_start();
       });
 
     });
-
-    $(document).on("click", "table tbody tr", function(e) {
-      $(this).addClass("selected").siblings().removeClass("selected");
-    });
-
-
-        /*$(document).on("click", "table tbody tr", function(e) {
+    
+        $(document).on("click", "table tbody tr", function(e) {
           if($(this).hasClass("selected")){
             $(this).removeClass("selected");
           } else {
             $(this).addClass("selected").siblings().removeClass("selected");
           }
-          if ($(this).hasClass("selected")) {
-            showProblemDetails();
-            buttonRename();
-          } else {
-            clearProblemDetails();
-          }
-        });*/
+        });
 
 
 
