@@ -74,7 +74,7 @@
           rows += row;
         };
         $("#callLogTable > tbody:last-child").append(rows);
-        
+
       var userid;
       var user;
       $.ajax({
@@ -87,6 +87,15 @@
           name = response.name;
           $("#username_details").val(user);
           $("#name_details").val(name);
+        }
+      });
+
+      $.ajax({
+        url: 'get_problem_types.php',
+        data: {},
+        type: 'GET',
+        success: function(response){
+          $("#addSpeciality").append(response);
         }
       });
 
@@ -109,8 +118,8 @@
           $("#saveEditBtn").prop("disabled", false);
         });
       });
-      
-      
+
+
 
       function showProblemDetails(){
         var row = Number($("#callLogTable tr.selected td:first").html()) - 1;
@@ -210,7 +219,7 @@
                   row += "<td class='statustd'>"+log.calls[i][j]+"</td>";
                 } else if (j == 7) {
                   row += "<td class='prioritytd'>"+log.calls[i][j]+"</td>";
-                } 
+                }
                 else {
                   row += "<td>"+log.calls[i][j]+"</td>";
                 }
@@ -296,8 +305,9 @@
       function openProblemDetailsDialog(){
       	openModalDialog($("#problemDetailsModal"));
       }
-      
+
       function openLinkSpecialityDialog(){
+        getSpecialities();
       	openModalDialog($("#linkSpecialityModal"));
       }
 
@@ -336,6 +346,44 @@
           }
         });
       }
+
+      function getSpecialities(){
+        $.ajax({
+          url: 'get_specialities.php',
+          data: {},
+          type: 'GET',
+          dataType: 'json',
+          success: function(response){
+            var str = "";
+            for (var i = 0; i < response.length; i++) {
+              str += response[i].ptid + " - " + response[i].ptname +"\n";
+            }
+            $("#currentSpecialitiesTxtArea").val("");
+            $("#currentSpecialitiesTxtArea").val(str);
+          }
+        })
+      }
+
+      function addSpeciality(){
+        var probType = $("#addSpeciality option:selected").text();
+        var probTypeParts = probType.split(" ");
+        $.ajax({
+          url: 'add_specialty.php',
+          data: {specialty: probTypeParts[0]},
+          type: 'POST',
+          dataType: 'json',
+          success: function(response){
+            if (response.success){
+              alert("Speciality added!");
+            } else {
+              alert("Error: "+response.msg);
+            }
+          }
+        });
+        getSpecialities();
+      }
+
+
     </script>
   </head>
   <body>
@@ -375,14 +423,14 @@
     </div>
 
     <div id="left">
-    
+
     <div id="user_details">
     <label>Username:</label>
     <input type="text" id="username_details" class="detailsText"/><br>
     <label>Name:</label>
     <input type="text" id="name_details" class="detailsText"/><br>
     </div>
-    
+
       <div id="filter">
         <h2>Filter</h2>
         <div class="filterElement">
@@ -640,7 +688,7 @@
           </div>
       </div>
     </div>
-    
+
     <div id="linkSpecialityModal" class="modal">
       <div id="linkSpecialityModal" class="modal-content">
         <div>
@@ -651,17 +699,17 @@
 
 		<div class="typeInput">
   			<label class="" for="textinput">Speciality:</label>
-			<select id="addSpeciality" class="problemPrioritySel">
+			     <select id="addSpeciality" class="problemPrioritySel">
           		<option value='empty'></option>
         	</select>
-        	<input type="button" class="btnAddSpeciality" value="Add"><br><br>
-        	
+        	<input type="button" class="btnAddSpeciality" value="Add" onclick="addSpeciality();"><br><br>
+
 
   			<label class="" for="textinput">Current Specialities:</label><br><br>
   			<textarea id="currentSpecialitiesTxtArea" rows="4" cols="50"></textarea>
 		</div>
 
-  		
+
 		<div class="typeButtons">
 			<input type="button" class="btnCancel" value="Cancel" onClick="closeModalDialog($('#linkSpecialityModal'));">
 			<input type="button" class="btnAddProblemType" value="Save">
@@ -669,6 +717,6 @@
 
       </div>
     </div>
-    
+
   </body>
 </html>
