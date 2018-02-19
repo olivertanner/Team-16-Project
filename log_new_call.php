@@ -112,13 +112,13 @@ session_start();
         type: 'POST',
         dataType: 'json',
         success: function(response){
-          if (!response.length >0){
+          if (response.length>0){
             var rows = "";
             for (var i = 0; i < response.length; i++) {
+              var ptname = (response[i].ptid.length > 0) ? response[i].ptname : 'None';
               var row = "<tr><td>"+response[i].specid+"</td>";
               row += "<td>"+response[i].specname+"</td>";
-              row += "<td>"+response[i].ptid.length > 0 ?
-               response[i].ptid : "None" + "</td>";
+              row += "<td>"+ptname+"</td>";
               row += "<td>"+response[i].priority+"</td></tr>";
               rows += row;
             }
@@ -126,7 +126,7 @@ session_start();
             $("#specialistTable tbody").html(rows);
           }
         }
-      })
+      });
       /*var problemType = $("#addProblemTypeSel option:selected").text();
       if (problemType !== ""){
         $("#specialistTable tbody").html("");
