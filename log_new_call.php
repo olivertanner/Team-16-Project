@@ -1,3 +1,5 @@
+<!--Page to log new calls and problems into the database
+Contributors: Ollie Tanner, Eoghan Burke-->
 <?php
 session_start();
  ?>
@@ -105,8 +107,8 @@ session_start();
       $("#addProblemModal").removeAttr("style");
       $("#addProblemModal").attr("style","display:none");
     }
-    
-    
+
+
 
     function lookupCaller(){
       if ($("#callerLookupTableWrapper:visible").length == 0){
@@ -191,18 +193,20 @@ session_start();
         },
         type: 'POST',
         success: function(response){
-          var problems;
-          if (!window.sessionStorage.getItem("problems")){
-            problems = new Array(response);
-          } else {
-            problems = window.sessionStorage.getItem("problems");
-            problems = JSON.parse(problems);
-            problems.push(response);
-          }
-          window.sessionStorage.setItem("problems", JSON.stringify(problems));
+          $.ajax({
+            url: 'store_problems.php',
+            data: {
+              problem: response
+            },
+            type: 'POST',
+            success: function(result){
+            }
+          });
           closeAddProblemDialog();
-        }
-      });
+          }
+
+        });
+      }
       /*
       var problemID = Math.floor(Math.random()*1000);
       var problemType = $("#addProblemTypeSel option:selected").text();
@@ -212,15 +216,23 @@ session_start();
       $("#problemTable tbody").append(row);
       closeAddProblemDialog();
       */
-    }
+
 
     function removeProblem(){
-      window.sessionStorage.removeItem("problems");
+      $.ajax({
+        url: 'empty_problems_from_session.php',
+        data: {},
+        type: 'GET',
+        success: function(response){
+
+        }
+      });
     }
 
     function logCall(){
       var callerid = $("#idNoInput").val();
       var operatorid;
+      var problems;
       $.when(
         $.ajax({
           url: "sessionhandler.php",
@@ -231,17 +243,17 @@ session_start();
             var opid = response.operatorid;
             operatorid = opid;
           }
+        }),
+        $.ajax({
+          url: 'get_problems_from_session.php',
+          data: {},
+          type: 'GET',
+          success: function(response){
+            problems = response;
+          }
         })
       ).done(function(){
-        var operatorid = window.sessionStorage.getItem("operatorid");
         var reason = $("#reasonTxtArea").val();
-        var problems;
-        if (!window.sessionStorage.getItem("problems")){
-          problems = "";
-        } else {
-          problems = window.sessionStorage.getItem("problems");
-          problems = JSON.parse(problems);
-        }
         $.ajax({
           url: 'add_call.php',
           data: {
@@ -256,8 +268,6 @@ session_start();
           }
         });
       });
-
-
     }
 
     $(document).on("dblclick", "#callerTable tbody tr", function(e) {

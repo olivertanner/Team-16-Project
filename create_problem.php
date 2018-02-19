@@ -1,3 +1,5 @@
+<!--PHP code to create a json object of a problem
+Contributor: Ollie Tanner-->
 <?php
   session_start();
   include 'problem.php';
@@ -10,6 +12,20 @@
   $specialistId = $_POST["specialistId"];
   $status = $_POST["status"];
   $priority = $_POST["priority"];
-  $problem = new Problem("", $problemTypeId, $desc, $notes, "", $hardwareId, $softwareId, $osId, $status, $specialistId, $priority, "");
+  $problem = array(
+    'id' => "",
+    'typeid' =>$problemTypeId,
+    'desc' =>$desc,
+    'notes' =>$notes,
+    'datetime' => "",
+    'hardwareid' =>$hardwareId,
+    'softwareid' =>$softwareId,
+    'osid' =>$osId,
+    'status' =>$status,
+    'specialistid' =>$specialistId,
+    'priority' =>$priority,
+    'solutionid' =>""
+  );
+
   echo json_encode($problem);
  ?>

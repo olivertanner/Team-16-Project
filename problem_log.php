@@ -1,3 +1,5 @@
+<!--Page containing log of problems in database
+Contributors: Ollie Tanner, Eoghan Burke, Tamara Maggs, Will Reynolds, Isabel Lee, Elie Ako-->
 <?php
  session_start();
  ?>
